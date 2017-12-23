@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="widget-carousel-index">
 
-    <p>
+    <p class="text-right">
         <?php echo Html::a(Yii::t('backend', 'Create {modelClass}', [
                 'modelClass' => 'Widget Carousel',
             ]), ['create'], ['class' => 'btn btn-success']) ?>

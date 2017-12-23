@@ -14,12 +14,18 @@ use yii\bootstrap\ActiveForm;
 <div class="user-form">
 
     <?php $form = ActiveForm::begin(); ?>
+        <div class="col-md-12">
+        <div class="col-md-6">
         <?php echo $form->field($model, 'username') ?>
         <?php echo $form->field($model, 'email') ?>
         <?php echo $form->field($model, 'password')->passwordInput() ?>
+        </div>
+        <div class="col-md-6">
         <?php echo $form->field($model, 'status')->dropDownList(User::statuses()) ?>
-        <?php echo $form->field($model, 'roles')->checkboxList($roles) ?>
-        <div class="form-group">
+        <?php echo $form->field($model, 'roles')->checkboxList($roles,['class'=>'well']) ?>
+        </div>
+        </div>
+        <div class="form-group pull-right">
             <?php echo Html::submitButton(Yii::t('backend', 'Save'), ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
         </div>
     <?php ActiveForm::end(); ?>

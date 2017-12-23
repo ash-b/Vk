@@ -50,7 +50,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                     <!-- menu prile quick info -->
                     <div class="profile">
                         <div class="profile_pic">
-                            <img src="http://placehold.it/128x128" alt="..." class="img-circle profile_img">
+                            <img src="<?php echo Yii::$app->user->identity->userProfile->getAvatar($this->assetManager->getAssetUrl($bundle, 'img/anonymous.jpg')) ?>" alt="..." class="img-circle profile_img">
                         </div>
                         <div class="profile_info">
                             <span>Welcome,</span>
@@ -68,7 +68,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                             <h3>General</h3>
                             <?php echo \yiister\gentelella\widgets\Menu::widget([
                                 'options' => ['class' => 'sidebar-menu'],
-                                'linkTemplate' => '<a href="{url}">{icon}<span>{label}</span>{right-icon}{badge}</a>',
+                                'linkTemplate' => '<a href="{url}">{icon}<span>{label}</span>{badge}</a>',
                                 'submenuTemplate' => "\n<ul class=\"treeview-menu\">\n{items}\n</ul>\n",
                                 'activateParents' => true,
                                 'items' => [
@@ -88,6 +88,12 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                         'label' => Yii::t('backend', 'Users'),
                                         'icon' => 'table',
                                         'url' => ['/user/index'],
+                                        'visible' => Yii::$app->user->can('administrator')
+                                    ],
+                                    [
+                                        'label' => Yii::t('backend', 'Widgets'),
+                                        'icon' => 'table',
+                                        'url' => ['/widget-carousel/index'],
                                         'visible' => Yii::$app->user->can('administrator')
                                     ],
                                     [
@@ -135,20 +141,20 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="">
                                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <img src="http://placehold.it/128x128" alt=""><?php echo Yii::$app->user->identity->username ?>
+                                        <img src="<?php echo Yii::$app->user->identity->userProfile->getAvatar($this->assetManager->getAssetUrl($bundle, 'img/anonymous.jpg')) ?>" alt=""><?php echo Yii::$app->user->identity->username ?>
                                         <span class=" fa fa-angle-down"></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-usermenu pull-right">
                                         
                                         <li class="user-footer">
                                     
-                                        <?php echo Html::a(Yii::t('backend', 'Profile'), ['/sign-in/profile'], ['class' => 'btn btn-default btn-flat']) ?>
+                                        <?php echo Html::a(Yii::t('backend', 'Profile'), ['/sign-in/profile'], ['class' => '']) ?>
                                     
                                     
-                                        <?php echo Html::a(Yii::t('backend', 'Account'), ['/sign-in/account'], ['class' => 'btn btn-default btn-flat']) ?>
+                                        <?php echo Html::a(Yii::t('backend', 'Account'), ['/sign-in/account'], ['class' => '']) ?>
                                     
                                     
-                                        <?php echo Html::a(Yii::t('backend', 'Logout'), ['/sign-in/logout'], ['class' => 'btn btn-default btn-flat', 'data-method' => 'post']) ?>
+                                        <?php echo Html::a(Yii::t('backend', 'Logout'), ['/sign-in/logout'], ['class' => '', 'data-method' => 'post']) ?>
                                     
                                         </li>
                                 

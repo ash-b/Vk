@@ -1,6 +1,6 @@
 <?php
 $config = [
-    'name' => 'Yii2 Starter Kit',
+    'name' => 'Admission Guruji',
     'vendorPath' => __DIR__ . '/../../vendor',
     'extensions' => require(__DIR__ . '/../../vendor/yiisoft/extensions.php'),
     'sourceLanguage' => 'en-US',
@@ -113,18 +113,18 @@ $config = [
             ],
         ],
 
-        'fileStorage' => [
-            'class' => '\trntv\filekit\Storage',
-            'baseUrl' => '@storageUrl/source',
-            'filesystem' => [
+       'fileStorage' => [
+                'class' => '\trntv\filekit\Storage',
+                'baseUrl' => '/storage/source',
+                'filesystem' => [
                 'class' => 'common\components\filesystem\LocalFlysystemBuilder',
                 'path' => '@storage/web/source'
-            ],
-            'as log' => [
+                ],
+                'as log' => [
                 'class' => 'common\behaviors\FileStorageLogBehavior',
                 'component' => 'fileStorage'
-            ]
-        ],
+                ]
+                ],
 
         'keyStorage' => [
             'class' => 'common\components\keyStorage\KeyStorage'

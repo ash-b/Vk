@@ -13,38 +13,48 @@ use yii\helpers\Html;
     <?php $form = ActiveForm::begin(); ?>
 
     <?php echo $form->errorSummary($model) ?>
+    
+    <div class="col-md-12">
+        <div class="col-md-6">
 
     <?php echo $form->field($model, 'image')->widget(
         \trntv\filekit\widget\Upload::className(),
         [
             'url'=>['/file-storage/upload'],
         ]
-    ) ?>
+        ) ?>
 
-    <?php echo $form->field($model, 'order')->textInput() ?>
+        <?php echo $form->field($model, 'order')->textInput() ?>
 
-    <?php echo $form->field($model, 'url')->textInput(['maxlength' => 1024]) ?>
+        <?php echo $form->field($model, 'url')->textInput(['maxlength' => 1024]) ?>
 
-    <?php echo $form->field($model, 'caption')->widget(
-        \yii\imperavi\Widget::className(),
-        [
-            'plugins' => ['fullscreen', 'fontcolor', 'video'],
-            'options' => [
-                'minHeight' => 400,
-                'maxHeight' => 400,
-                'buttonSource' => true,
-                'convertDivs' => false,
-                'removeEmptyTags' => true,
+        <?php echo $form->field($model, 'status')->checkbox() ?>
+        </div>
+        <div class="col-md-6">
+        <?php echo $form->field($model, 'caption')->widget(
+            \yii\imperavi\Widget::className(),
+            [
+                'plugins' => ['fullscreen', 'fontcolor', 'video'],
+                'options' => [
+                    'minHeight' => 400,
+                    'maxHeight' => 400,
+                    'buttonSource' => true,
+                    'convertDivs' => false,
+                    'removeEmptyTags' => true,
+                ]
             ]
-        ]
-    ) ?>
+            ) ?>
 
-    <?php echo $form->field($model, 'status')->checkbox() ?>
-
-    <div class="form-group">
-        <?php echo Html::submitButton($model->isNewRecord ? Yii::t('backend', 'Create') : Yii::t('backend', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+            
+        </div>
     </div>
 
-    <?php ActiveForm::end(); ?>
 
-</div>
+
+            <div class="form-group">
+                <?php echo Html::submitButton($model->isNewRecord ? Yii::t('backend', 'Create') : Yii::t('backend', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success pull-right' : 'btn btn-primary pull-right']) ?>
+            </div>
+
+            <?php ActiveForm::end(); ?>
+
+        </div>

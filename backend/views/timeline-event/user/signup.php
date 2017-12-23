@@ -21,7 +21,7 @@
         ]) ?>
     </div>
 
-    <div class="timeline-footer">
+    <div class="timeline-footer pull-right">
         <?php echo \yii\helpers\Html::a(
             Yii::t('backend', 'View user'),
             ['/user/view', 'id' => $model->data['user_id']],

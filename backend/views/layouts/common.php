@@ -83,6 +83,41 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                         'badge' => TimelineEvent::find()->today()->count(),
                                         'badgeBgClass' => 'label-success',
                                     ],
+                                    [
+                                        'label' => Yii::t('backend', 'City'),
+                                        'icon' => 'th',
+                                        'url' => ['/city/index'],
+                                    ],
+                                    [
+                                        'label' => Yii::t('backend', 'Branch'),
+                                        'icon' => 'th',
+                                        'url' => ['/branch/index'],
+                                    ],
+                                    [
+                                        'label' => Yii::t('backend', 'Caste'),
+                                        'icon' => 'th',
+                                        'url' => ['/caste/index'],
+                                    ],
+                                    [
+                                        'label' => Yii::t('backend', 'University'),
+                                        'icon' => 'th',
+                                        'url' => ['/university/index'],
+                                    ],
+                                    [
+                                        'label' => Yii::t('backend', 'College'),
+                                        'icon' => 'th',
+                                        'url' => ['/college/index'],
+                                    ],
+                                    [
+                                        'label' => Yii::t('backend', 'Stream'),
+                                        'icon' => 'th',
+                                        'url' => ['/stream/index'],
+                                    ],
+                                    [
+                                        'label' => Yii::t('backend', 'Course'),
+                                        'icon' => 'th',
+                                        'url' => ['/course/index'],
+                                    ],
                                    
                                     [
                                         'label' => Yii::t('backend', 'Users'),
@@ -112,7 +147,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
 
                         <!-- /menu footer buttons -->
                         <div class="sidebar-footer hidden-small">
-                            <a data-toggle="tooltip" data-placement="top" title="Settings">
+                            <!-- <a data-toggle="tooltip" data-placement="top" title="Settings">
                                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                             </a>
                             <a data-toggle="tooltip" data-placement="top" title="FullScreen">
@@ -123,7 +158,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                             </a>
                             <a data-toggle="tooltip" data-placement="top" title="Logout">
                                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                            </a>
+                            </a> -->
                         </div>
                         <!-- /menu footer buttons -->
                     </div>

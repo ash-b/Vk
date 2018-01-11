@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 23, 2017 at 09:35 AM
+-- Generation Time: Dec 28, 2017 at 09:25 PM
 -- Server version: 5.7.20-0ubuntu0.16.04.1
 -- PHP Version: 7.0.22-0ubuntu0.16.04.1
 
@@ -88,6 +88,127 @@ INSERT INTO `article_category` (`id`, `slug`, `title`, `body`, `parent_id`, `sta
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `branch`
+--
+
+CREATE TABLE `branch` (
+  `id` int(11) NOT NULL,
+  `name` varchar(56) NOT NULL,
+  `code` varchar(10) NOT NULL,
+  `status` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `branch`
+--
+
+INSERT INTO `branch` (`id`, `name`, `code`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Information Technology', '001', 1, '2017-12-27 22:46:40', '2017-12-27 22:46:40');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `caste`
+--
+
+CREATE TABLE `caste` (
+  `id` int(11) NOT NULL,
+  `name` varchar(56) NOT NULL,
+  `status` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `caste`
+--
+
+INSERT INTO `caste` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Open', 1, '2017-12-27 22:48:33', '2017-12-27 22:48:33');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `city`
+--
+
+CREATE TABLE `city` (
+  `id` int(11) NOT NULL,
+  `name` varchar(56) NOT NULL,
+  `status` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `city`
+--
+
+INSERT INTO `city` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Pune', 1, '2017-12-27 22:37:54', '2017-12-27 22:37:54');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `college`
+--
+
+CREATE TABLE `college` (
+  `id` int(11) NOT NULL,
+  `name` varchar(56) NOT NULL,
+  `description` text,
+  `address` text,
+  `image_path` text,
+  `image_base_url` text,
+  `dte_code` varchar(11) DEFAULT NULL,
+  `college_type` varchar(11) DEFAULT NULL,
+  `university_id` int(11) DEFAULT NULL,
+  `city_id` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `college`
+--
+
+INSERT INTO `college` (`id`, `name`, `description`, `address`, `image_path`, `image_base_url`, `dte_code`, `college_type`, `university_id`, `city_id`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'COEP', 'COEP', 'Coep pune', '1/E-J6GfNC08BCidJF-B0zqILuaGWS0U0T.jpeg', '/storage/source', '00125', 'Government', 1, 1, 1, '2017-12-27 23:36:05', '2017-12-28 09:49:11');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `college_attachment`
+--
+
+CREATE TABLE `college_attachment` (
+  `id` int(11) NOT NULL,
+  `college_id` int(11) NOT NULL,
+  `path` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `base_url` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `size` int(11) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `order` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `college_attachment`
+--
+
+INSERT INTO `college_attachment` (`id`, `college_id`, `path`, `base_url`, `type`, `size`, `name`, `created_at`, `updated_at`, `order`) VALUES
+(1, 1, '1/Mmp9QSVV4TfYk96eVpcvNXFLTB-K5kOe.jpg', '/storage/source', 'image/jpeg', 197581, 'mit-pune.jpg', '2017-12-28 08:01:48', '2017-12-28 09:49:11', NULL),
+(2, 1, '1/8DHEyxijYyWLYiSymsFBzzyYq4UKsP6c.jpeg', '/storage/source', 'image/jpeg', 36754, '1417070447dyp9.PNG.jpeg', '2017-12-28 08:01:48', '2017-12-28 09:49:12', NULL),
+(3, 1, '1/PmQuHRNVW_Tme1rOZppaOAnrFDxDLBGf.jpg', '/storage/source', 'image/jpeg', 72348, 'e3c83bf74ec354b2de25d792c1cc8a69coveraissm.jpg', '2017-12-28 08:01:48', '2017-12-28 09:49:12', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `file_storage_item`
 --
 
@@ -113,7 +234,14 @@ INSERT INTO `file_storage_item` (`id`, `component`, `base_url`, `path`, `type`, 
 (3, 'fileStorage', '/storage/source', '1/Jg3qMFTrGRnVCT1U_6C9x_nJVPOr5l99.jpg', 'image/jpeg', 72348, 'Jg3qMFTrGRnVCT1U_6C9x_nJVPOr5l99', '127.0.0.1', 1513964033),
 (4, 'fileStorage', '/storage/source', '1/623u-vLcEulWXEEPuDPIw2oBZ2jh0jM1.jpeg', 'image/jpeg', 36754, '623u-vLcEulWXEEPuDPIw2oBZ2jh0jM1', '127.0.0.1', 1513964455),
 (5, 'fileStorage', '/storage/source', '1/lFuUB1vFhZd6dRbBbzg3jrfEYG3Q09rP.jpg', 'image/jpeg', 197581, 'lFuUB1vFhZd6dRbBbzg3jrfEYG3Q09rP', '127.0.0.1', 1513964472),
-(8, 'fileStorage', '/storage/source', '1/SyAQkioUGvgs5v67lvzvawmz2Uq4cgBX.jpg', 'image/jpeg', 197581, 'SyAQkioUGvgs5v67lvzvawmz2Uq4cgBX', '127.0.0.1', 1514001728);
+(8, 'fileStorage', '/storage/source', '1/SyAQkioUGvgs5v67lvzvawmz2Uq4cgBX.jpg', 'image/jpeg', 197581, 'SyAQkioUGvgs5v67lvzvawmz2Uq4cgBX', '127.0.0.1', 1514001728),
+(9, 'fileStorage', '/storage/source', '1/ZKnvBQ9FLyaqM_0Pu1b7LwGSgTtARtJD.jpeg', 'image/jpeg', 36754, 'ZKnvBQ9FLyaqM_0Pu1b7LwGSgTtARtJD', '127.0.0.1', 1514396447),
+(10, 'fileStorage', '/storage/source', '1/bL9OGCzbtYXs41mADv89YVjfUuUVFN_c.jpeg', 'image/jpeg', 36754, 'bL9OGCzbtYXs41mADv89YVjfUuUVFN_c', '127.0.0.1', 1514396502),
+(11, 'fileStorage', '/storage/source', '1/E-J6GfNC08BCidJF-B0zqILuaGWS0U0T.jpeg', 'image/jpeg', 36754, 'E-J6GfNC08BCidJF-B0zqILuaGWS0U0T', '127.0.0.1', 1514397946),
+(12, 'fileStorage', '/storage/source', '1/Mmp9QSVV4TfYk96eVpcvNXFLTB-K5kOe.jpg', 'image/jpeg', 197581, 'Mmp9QSVV4TfYk96eVpcvNXFLTB-K5kOe', '127.0.0.1', 1514428294),
+(13, 'fileStorage', '/storage/source', '1/8DHEyxijYyWLYiSymsFBzzyYq4UKsP6c.jpeg', 'image/jpeg', 36754, '8DHEyxijYyWLYiSymsFBzzyYq4UKsP6c', '127.0.0.1', 1514428298),
+(14, 'fileStorage', '/storage/source', '1/PmQuHRNVW_Tme1rOZppaOAnrFDxDLBGf.jpg', 'image/jpeg', 72348, 'PmQuHRNVW_Tme1rOZppaOAnrFDxDLBGf', '127.0.0.1', 1514428303),
+(15, 'fileStorage', '/storage/source', '1/XsDodL8KzvWzy3zykAGhWZ_P_0Xg8CSq.jpg', 'image/jpeg', 197581, 'XsDodL8KzvWzy3zykAGhWZ_P_0Xg8CSq', '127.0.0.1', 1514428380);
 
 -- --------------------------------------------------------
 
@@ -252,6 +380,33 @@ CREATE TABLE `rbac_auth_rule` (
 
 INSERT INTO `rbac_auth_rule` (`name`, `data`, `created_at`, `updated_at`) VALUES
 ('ownModelRule', 0x4f3a32393a22636f6d6d6f6e5c726261635c72756c655c4f776e4d6f64656c52756c65223a333a7b733a343a226e616d65223b733a31323a226f776e4d6f64656c52756c65223b733a393a22637265617465644174223b693a313439393639303432343b733a393a22757064617465644174223b693a313439393639303432343b7d, 1499690424, 1499690424);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stream`
+--
+
+CREATE TABLE `stream` (
+  `id` int(11) NOT NULL,
+  `name` varchar(56) NOT NULL,
+  `description` text,
+  `status` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `stream`
+--
+
+INSERT INTO `stream` (`id`, `name`, `description`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Engineering', '', 1, '2017-12-28 21:20:02', '2017-12-28 21:20:02'),
+(2, 'Medical', '', 1, '2017-12-28 21:20:14', '2017-12-28 21:20:14'),
+(3, 'Architecture', '', 1, '2017-12-28 21:20:46', '2017-12-28 21:20:46'),
+(4, 'Animation', '', 1, '2017-12-28 21:20:58', '2017-12-28 21:20:58'),
+(5, 'Aeronotics', '', 1, '2017-12-28 21:21:09', '2017-12-28 21:21:09'),
+(6, 'Hotel Management', '', 1, '2017-12-28 21:21:25', '2017-12-28 21:21:25');
 
 -- --------------------------------------------------------
 
@@ -413,7 +568,25 @@ INSERT INTO `system_log` (`id`, `level`, `category`, `log_time`, `prefix`, `mess
 (101, 1, 'Error', 1513963284.6052, '[frontend][/frontend/web/site/index]', 'Error: Class \'yii\\web\\Html\' not found in /var/www/vk/frontend/views/site/index.php:27\nStack trace:\n#0 /var/www/vk/vendor/yiisoft/yii2/base/View.php(332): require()\n#1 /var/www/vk/vendor/yiisoft/yii2/base/View.php(250): yii\\base\\View->renderPhpFile(\'/var/www/vk/fro...\', Array)\n#2 /var/www/vk/vendor/yiisoft/yii2/base/View.php(152): yii\\base\\View->renderFile(\'/var/www/vk/fro...\', Array, Object(frontend\\controllers\\SiteController))\n#3 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(384): yii\\base\\View->render(\'index\', Array, Object(frontend\\controllers\\SiteController))\n#4 /var/www/vk/frontend/controllers/SiteController.php(36): yii\\base\\Controller->render(\'index\')\n#5 [internal function]: frontend\\controllers\\SiteController->actionIndex()\n#6 /var/www/vk/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)\n#7 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(157): yii\\base\\InlineAction->runWithParams(Array)\n#8 /var/www/vk/vendor/yiisoft/yii2/base/Module.php(528): yii\\base\\Controller->runAction(\'index\', Array)\n#9 /var/www/vk/vendor/yiisoft/yii2/web/Application.php(103): yii\\base\\Module->runAction(\'site/index\', Array)\n#10 /var/www/vk/vendor/yiisoft/yii2/base/Application.php(386): yii\\web\\Application->handleRequest(Object(yii\\web\\Request))\n#11 /var/www/vk/frontend/web/index.php(22): yii\\base\\Application->run()\n#12 {main}'),
 (102, 1, 'Error', 1513963393.0352, '[frontend][/frontend/web/site/index]', 'Error: Class \'Html\' not found in /var/www/vk/frontend/views/site/index.php:14\nStack trace:\n#0 /var/www/vk/vendor/yiisoft/yii2/base/View.php(332): require()\n#1 /var/www/vk/vendor/yiisoft/yii2/base/View.php(250): yii\\base\\View->renderPhpFile(\'/var/www/vk/fro...\', Array)\n#2 /var/www/vk/vendor/yiisoft/yii2/base/View.php(152): yii\\base\\View->renderFile(\'/var/www/vk/fro...\', Array, Object(frontend\\controllers\\SiteController))\n#3 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(384): yii\\base\\View->render(\'index\', Array, Object(frontend\\controllers\\SiteController))\n#4 /var/www/vk/frontend/controllers/SiteController.php(36): yii\\base\\Controller->render(\'index\')\n#5 [internal function]: frontend\\controllers\\SiteController->actionIndex()\n#6 /var/www/vk/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)\n#7 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(157): yii\\base\\InlineAction->runWithParams(Array)\n#8 /var/www/vk/vendor/yiisoft/yii2/base/Module.php(528): yii\\base\\Controller->runAction(\'index\', Array)\n#9 /var/www/vk/vendor/yiisoft/yii2/web/Application.php(103): yii\\base\\Module->runAction(\'site/index\', Array)\n#10 /var/www/vk/vendor/yiisoft/yii2/base/Application.php(386): yii\\web\\Application->handleRequest(Object(yii\\web\\Request))\n#11 /var/www/vk/frontend/web/index.php(22): yii\\base\\Application->run()\n#12 {main}'),
 (103, 1, 'ReflectionException', 1514001005.93, '[backend][/backend/web/user/create]', 'ReflectionException: Class well does not exist in /var/www/vk/vendor/yiisoft/yii2/di/Container.php:426\nStack trace:\n#0 /var/www/vk/vendor/yiisoft/yii2/di/Container.php(426): ReflectionClass->__construct(\'well\')\n#1 /var/www/vk/vendor/yiisoft/yii2/di/Container.php(364): yii\\di\\Container->getDependencies(\'well\')\n#2 /var/www/vk/vendor/yiisoft/yii2/di/Container.php(156): yii\\di\\Container->build(\'well\', Array, Array)\n#3 /var/www/vk/vendor/yiisoft/yii2/BaseYii.php(349): yii\\di\\Container->get(\'well\', Array, Array)\n#4 /var/www/vk/vendor/yiisoft/yii2/widgets/ActiveForm.php(312): yii\\BaseYii::createObject(Array)\n#5 /var/www/vk/vendor/yiisoft/yii2-bootstrap/ActiveForm.php(107): yii\\widgets\\ActiveForm->field(Object(backend\\models\\UserForm), \'roles\', Array)\n#6 /var/www/vk/backend/views/user/_form.php(25): yii\\bootstrap\\ActiveForm->field(Object(backend\\models\\UserForm), \'roles\', Array)\n#7 /var/www/vk/vendor/yiisoft/yii2/base/View.php(332): require(\'/var/www/vk/bac...\')\n#8 /var/www/vk/vendor/yiisoft/yii2/base/View.php(250): yii\\base\\View->renderPhpFile(\'/var/www/vk/bac...\', Array)\n#9 /var/www/vk/vendor/yiisoft/yii2/base/View.php(152): yii\\base\\View->renderFile(\'/var/www/vk/bac...\', Array, NULL)\n#10 /var/www/vk/backend/views/user/create.php(15): yii\\base\\View->render(\'_form\', Array)\n#11 /var/www/vk/vendor/yiisoft/yii2/base/View.php(332): require(\'/var/www/vk/bac...\')\n#12 /var/www/vk/vendor/yiisoft/yii2/base/View.php(250): yii\\base\\View->renderPhpFile(\'/var/www/vk/bac...\', Array)\n#13 /var/www/vk/vendor/yiisoft/yii2/base/View.php(152): yii\\base\\View->renderFile(\'/var/www/vk/bac...\', Array, Object(backend\\controllers\\UserController))\n#14 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(384): yii\\base\\View->render(\'create\', Array, Object(backend\\controllers\\UserController))\n#15 /var/www/vk/backend/controllers/UserController.php(89): yii\\base\\Controller->render(\'create\', Array)\n#16 [internal function]: backend\\controllers\\UserController->actionCreate()\n#17 /var/www/vk/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)\n#18 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(157): yii\\base\\InlineAction->runWithParams(Array)\n#19 /var/www/vk/vendor/yiisoft/yii2/base/Module.php(528): yii\\base\\Controller->runAction(\'create\', Array)\n#20 /var/www/vk/vendor/yiisoft/yii2/web/Application.php(103): yii\\base\\Module->runAction(\'user/create\', Array)\n#21 /var/www/vk/vendor/yiisoft/yii2/base/Application.php(386): yii\\web\\Application->handleRequest(Object(yii\\web\\Request))\n#22 /var/www/vk/backend/web/index.php(23): yii\\base\\Application->run()\n#23 {main}'),
-(104, 1, 'yii\\base\\ErrorException:2', 1514001037.6002, '[backend][/backend/web/user/create]', 'yii\\base\\ErrorException: Invalid argument supplied for foreach() in /var/www/vk/vendor/yiisoft/yii2/helpers/BaseArrayHelper.php:123\nStack trace:\n#0 /var/www/vk/vendor/yiisoft/yii2/helpers/BaseArrayHelper.php(123): yii\\base\\ErrorHandler->handleError(2, \'Invalid argumen...\', \'/var/www/vk/ven...\', 123, Array)\n#1 /var/www/vk/vendor/yiisoft/yii2/widgets/ActiveForm.php(312): yii\\helpers\\BaseArrayHelper::merge(Array, \'\', Array)\n#2 /var/www/vk/vendor/yiisoft/yii2-bootstrap/ActiveForm.php(107): yii\\widgets\\ActiveForm->field(Object(backend\\models\\UserForm), \'roles\', \'\')\n#3 /var/www/vk/backend/views/user/_form.php(25): yii\\bootstrap\\ActiveForm->field(Object(backend\\models\\UserForm), \'roles\', \'\', Array)\n#4 /var/www/vk/vendor/yiisoft/yii2/base/View.php(332): require(\'/var/www/vk/bac...\')\n#5 /var/www/vk/vendor/yiisoft/yii2/base/View.php(250): yii\\base\\View->renderPhpFile(\'/var/www/vk/bac...\', Array)\n#6 /var/www/vk/vendor/yiisoft/yii2/base/View.php(152): yii\\base\\View->renderFile(\'/var/www/vk/bac...\', Array, NULL)\n#7 /var/www/vk/backend/views/user/create.php(15): yii\\base\\View->render(\'_form\', Array)\n#8 /var/www/vk/vendor/yiisoft/yii2/base/View.php(332): require(\'/var/www/vk/bac...\')\n#9 /var/www/vk/vendor/yiisoft/yii2/base/View.php(250): yii\\base\\View->renderPhpFile(\'/var/www/vk/bac...\', Array)\n#10 /var/www/vk/vendor/yiisoft/yii2/base/View.php(152): yii\\base\\View->renderFile(\'/var/www/vk/bac...\', Array, Object(backend\\controllers\\UserController))\n#11 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(384): yii\\base\\View->render(\'create\', Array, Object(backend\\controllers\\UserController))\n#12 /var/www/vk/backend/controllers/UserController.php(89): yii\\base\\Controller->render(\'create\', Array)\n#13 [internal function]: backend\\controllers\\UserController->actionCreate()\n#14 /var/www/vk/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)\n#15 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(157): yii\\base\\InlineAction->runWithParams(Array)\n#16 /var/www/vk/vendor/yiisoft/yii2/base/Module.php(528): yii\\base\\Controller->runAction(\'create\', Array)\n#17 /var/www/vk/vendor/yiisoft/yii2/web/Application.php(103): yii\\base\\Module->runAction(\'user/create\', Array)\n#18 /var/www/vk/vendor/yiisoft/yii2/base/Application.php(386): yii\\web\\Application->handleRequest(Object(yii\\web\\Request))\n#19 /var/www/vk/backend/web/index.php(23): yii\\base\\Application->run()\n#20 {main}');
+(104, 1, 'yii\\base\\ErrorException:2', 1514001037.6002, '[backend][/backend/web/user/create]', 'yii\\base\\ErrorException: Invalid argument supplied for foreach() in /var/www/vk/vendor/yiisoft/yii2/helpers/BaseArrayHelper.php:123\nStack trace:\n#0 /var/www/vk/vendor/yiisoft/yii2/helpers/BaseArrayHelper.php(123): yii\\base\\ErrorHandler->handleError(2, \'Invalid argumen...\', \'/var/www/vk/ven...\', 123, Array)\n#1 /var/www/vk/vendor/yiisoft/yii2/widgets/ActiveForm.php(312): yii\\helpers\\BaseArrayHelper::merge(Array, \'\', Array)\n#2 /var/www/vk/vendor/yiisoft/yii2-bootstrap/ActiveForm.php(107): yii\\widgets\\ActiveForm->field(Object(backend\\models\\UserForm), \'roles\', \'\')\n#3 /var/www/vk/backend/views/user/_form.php(25): yii\\bootstrap\\ActiveForm->field(Object(backend\\models\\UserForm), \'roles\', \'\', Array)\n#4 /var/www/vk/vendor/yiisoft/yii2/base/View.php(332): require(\'/var/www/vk/bac...\')\n#5 /var/www/vk/vendor/yiisoft/yii2/base/View.php(250): yii\\base\\View->renderPhpFile(\'/var/www/vk/bac...\', Array)\n#6 /var/www/vk/vendor/yiisoft/yii2/base/View.php(152): yii\\base\\View->renderFile(\'/var/www/vk/bac...\', Array, NULL)\n#7 /var/www/vk/backend/views/user/create.php(15): yii\\base\\View->render(\'_form\', Array)\n#8 /var/www/vk/vendor/yiisoft/yii2/base/View.php(332): require(\'/var/www/vk/bac...\')\n#9 /var/www/vk/vendor/yiisoft/yii2/base/View.php(250): yii\\base\\View->renderPhpFile(\'/var/www/vk/bac...\', Array)\n#10 /var/www/vk/vendor/yiisoft/yii2/base/View.php(152): yii\\base\\View->renderFile(\'/var/www/vk/bac...\', Array, Object(backend\\controllers\\UserController))\n#11 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(384): yii\\base\\View->render(\'create\', Array, Object(backend\\controllers\\UserController))\n#12 /var/www/vk/backend/controllers/UserController.php(89): yii\\base\\Controller->render(\'create\', Array)\n#13 [internal function]: backend\\controllers\\UserController->actionCreate()\n#14 /var/www/vk/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)\n#15 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(157): yii\\base\\InlineAction->runWithParams(Array)\n#16 /var/www/vk/vendor/yiisoft/yii2/base/Module.php(528): yii\\base\\Controller->runAction(\'create\', Array)\n#17 /var/www/vk/vendor/yiisoft/yii2/web/Application.php(103): yii\\base\\Module->runAction(\'user/create\', Array)\n#18 /var/www/vk/vendor/yiisoft/yii2/base/Application.php(386): yii\\web\\Application->handleRequest(Object(yii\\web\\Request))\n#19 /var/www/vk/backend/web/index.php(23): yii\\base\\Application->run()\n#20 {main}'),
+(105, 1, 'yii\\db\\Exception', 1514178671.7878, '[frontend][/frontend/web/page/about]', 'PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table \'vk.page\' doesn\'t exist in /var/www/vk/vendor/yiisoft/yii2/db/Command.php:1067\nStack trace:\n#0 /var/www/vk/vendor/yiisoft/yii2/db/Command.php(1067): PDOStatement->execute()\n#1 /var/www/vk/vendor/yiisoft/yii2/db/Command.php(400): yii\\db\\Command->queryInternal(\'fetch\', NULL)\n#2 /var/www/vk/vendor/yiisoft/yii2/db/Query.php(259): yii\\db\\Command->queryOne()\n#3 /var/www/vk/vendor/yiisoft/yii2/db/ActiveQuery.php(292): yii\\db\\Query->one(NULL)\n#4 /var/www/vk/frontend/controllers/PageController.php(20): yii\\db\\ActiveQuery->one()\n#5 [internal function]: frontend\\controllers\\PageController->actionView(\'about\')\n#6 /var/www/vk/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)\n#7 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(157): yii\\base\\InlineAction->runWithParams(Array)\n#8 /var/www/vk/vendor/yiisoft/yii2/base/Module.php(528): yii\\base\\Controller->runAction(\'view\', Array)\n#9 /var/www/vk/vendor/yiisoft/yii2/web/Application.php(103): yii\\base\\Module->runAction(\'page/view\', Array)\n#10 /var/www/vk/vendor/yiisoft/yii2/base/Application.php(386): yii\\web\\Application->handleRequest(Object(yii\\web\\Request))\n#11 /var/www/vk/frontend/web/index.php(22): yii\\base\\Application->run()\n#12 {main}\n\nNext yii\\db\\Exception: SQLSTATE[42S02]: Base table or view not found: 1146 Table \'vk.page\' doesn\'t exist\nThe SQL being executed was: SELECT * FROM `page` WHERE (`slug`=\'about\') AND (`status`=1) in /var/www/vk/vendor/yiisoft/yii2/db/Schema.php:595\nStack trace:\n#0 /var/www/vk/vendor/yiisoft/yii2/db/Command.php(1082): yii\\db\\Schema->convertException(Object(PDOException), \'SELECT * FROM `...\')\n#1 /var/www/vk/vendor/yiisoft/yii2/db/Command.php(400): yii\\db\\Command->queryInternal(\'fetch\', NULL)\n#2 /var/www/vk/vendor/yiisoft/yii2/db/Query.php(259): yii\\db\\Command->queryOne()\n#3 /var/www/vk/vendor/yiisoft/yii2/db/ActiveQuery.php(292): yii\\db\\Query->one(NULL)\n#4 /var/www/vk/frontend/controllers/PageController.php(20): yii\\db\\ActiveQuery->one()\n#5 [internal function]: frontend\\controllers\\PageController->actionView(\'about\')\n#6 /var/www/vk/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)\n#7 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(157): yii\\base\\InlineAction->runWithParams(Array)\n#8 /var/www/vk/vendor/yiisoft/yii2/base/Module.php(528): yii\\base\\Controller->runAction(\'view\', Array)\n#9 /var/www/vk/vendor/yiisoft/yii2/web/Application.php(103): yii\\base\\Module->runAction(\'page/view\', Array)\n#10 /var/www/vk/vendor/yiisoft/yii2/base/Application.php(386): yii\\web\\Application->handleRequest(Object(yii\\web\\Request))\n#11 /var/www/vk/frontend/web/index.php(22): yii\\base\\Application->run()\n#12 {main}\nAdditional Information:\nArray\n(\n    [0] => 42S02\n    [1] => 1146\n    [2] => Table \'vk.page\' doesn\'t exist\n)\n'),
+(106, 1, 'yii\\base\\ErrorException:8', 1514396413.7376, '[backend][/backend/web/university/create]', 'yii\\base\\ErrorException: Undefined variable: template in /var/www/vk/backend/views/university/_form.php:24\nStack trace:\n#0 /var/www/vk/backend/views/university/_form.php(24): yii\\base\\ErrorHandler->handleError(8, \'Undefined varia...\', \'/var/www/vk/bac...\', 24, Array)\n#1 /var/www/vk/vendor/yiisoft/yii2/base/View.php(332): require(\'/var/www/vk/bac...\')\n#2 /var/www/vk/vendor/yiisoft/yii2/base/View.php(250): yii\\base\\View->renderPhpFile(\'/var/www/vk/bac...\', Array)\n#3 /var/www/vk/vendor/yiisoft/yii2/base/View.php(152): yii\\base\\View->renderFile(\'/var/www/vk/bac...\', Array, NULL)\n#4 /var/www/vk/backend/views/university/create.php(16): yii\\base\\View->render(\'_form\', Array)\n#5 /var/www/vk/vendor/yiisoft/yii2/base/View.php(332): require(\'/var/www/vk/bac...\')\n#6 /var/www/vk/vendor/yiisoft/yii2/base/View.php(250): yii\\base\\View->renderPhpFile(\'/var/www/vk/bac...\', Array)\n#7 /var/www/vk/vendor/yiisoft/yii2/base/View.php(152): yii\\base\\View->renderFile(\'/var/www/vk/bac...\', Array, Object(backend\\controllers\\UniversityController))\n#8 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(384): yii\\base\\View->render(\'create\', Array, Object(backend\\controllers\\UniversityController))\n#9 /var/www/vk/backend/controllers/UniversityController.php(69): yii\\base\\Controller->render(\'create\', Array)\n#10 [internal function]: backend\\controllers\\UniversityController->actionCreate()\n#11 /var/www/vk/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)\n#12 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(157): yii\\base\\InlineAction->runWithParams(Array)\n#13 /var/www/vk/vendor/yiisoft/yii2/base/Module.php(528): yii\\base\\Controller->runAction(\'create\', Array)\n#14 /var/www/vk/vendor/yiisoft/yii2/web/Application.php(103): yii\\base\\Module->runAction(\'university/crea...\', Array)\n#15 /var/www/vk/vendor/yiisoft/yii2/base/Application.php(386): yii\\web\\Application->handleRequest(Object(yii\\web\\Request))\n#16 /var/www/vk/backend/web/index.php(23): yii\\base\\Application->run()\n#17 {main}'),
+(107, 1, 'yii\\db\\Exception', 1514396504.6345, '[backend][/backend/web/university/create]', 'PDOException: SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column \'created_at\' at row 1 in /var/www/vk/vendor/yiisoft/yii2/db/Command.php:994\nStack trace:\n#0 /var/www/vk/vendor/yiisoft/yii2/db/Command.php(994): PDOStatement->execute()\n#1 /var/www/vk/vendor/yiisoft/yii2/db/Schema.php(412): yii\\db\\Command->execute()\n#2 /var/www/vk/vendor/yiisoft/yii2/db/ActiveRecord.php(511): yii\\db\\Schema->insert(\'university\', Array)\n#3 /var/www/vk/vendor/yiisoft/yii2/db/ActiveRecord.php(477): yii\\db\\ActiveRecord->insertInternal(NULL)\n#4 /var/www/vk/vendor/yiisoft/yii2/db/BaseActiveRecord.php(646): yii\\db\\ActiveRecord->insert(true, NULL)\n#5 /var/www/vk/backend/controllers/UniversityController.php(65): yii\\db\\BaseActiveRecord->save()\n#6 [internal function]: backend\\controllers\\UniversityController->actionCreate()\n#7 /var/www/vk/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)\n#8 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(157): yii\\base\\InlineAction->runWithParams(Array)\n#9 /var/www/vk/vendor/yiisoft/yii2/base/Module.php(528): yii\\base\\Controller->runAction(\'create\', Array)\n#10 /var/www/vk/vendor/yiisoft/yii2/web/Application.php(103): yii\\base\\Module->runAction(\'university/crea...\', Array)\n#11 /var/www/vk/vendor/yiisoft/yii2/base/Application.php(386): yii\\web\\Application->handleRequest(Object(yii\\web\\Request))\n#12 /var/www/vk/backend/web/index.php(23): yii\\base\\Application->run()\n#13 {main}\n\nNext yii\\db\\Exception: SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column \'created_at\' at row 1\nThe SQL being executed was: INSERT INTO `university` (`name`, `status`, `image_path`, `image_base_url`, `created_at`, `updated_at`) VALUES (\'Pune\', 1, \'1/bL9OGCzbtYXs41mADv89YVjfUuUVFN_c.jpeg\', \'/storage/source\', NOW(), NOW()) in /var/www/vk/vendor/yiisoft/yii2/db/Schema.php:595\nStack trace:\n#0 /var/www/vk/vendor/yiisoft/yii2/db/Command.php(1004): yii\\db\\Schema->convertException(Object(PDOException), \'INSERT INTO `un...\')\n#1 /var/www/vk/vendor/yiisoft/yii2/db/Schema.php(412): yii\\db\\Command->execute()\n#2 /var/www/vk/vendor/yiisoft/yii2/db/ActiveRecord.php(511): yii\\db\\Schema->insert(\'university\', Array)\n#3 /var/www/vk/vendor/yiisoft/yii2/db/ActiveRecord.php(477): yii\\db\\ActiveRecord->insertInternal(NULL)\n#4 /var/www/vk/vendor/yiisoft/yii2/db/BaseActiveRecord.php(646): yii\\db\\ActiveRecord->insert(true, NULL)\n#5 /var/www/vk/backend/controllers/UniversityController.php(65): yii\\db\\BaseActiveRecord->save()\n#6 [internal function]: backend\\controllers\\UniversityController->actionCreate()\n#7 /var/www/vk/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)\n#8 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(157): yii\\base\\InlineAction->runWithParams(Array)\n#9 /var/www/vk/vendor/yiisoft/yii2/base/Module.php(528): yii\\base\\Controller->runAction(\'create\', Array)\n#10 /var/www/vk/vendor/yiisoft/yii2/web/Application.php(103): yii\\base\\Module->runAction(\'university/crea...\', Array)\n#11 /var/www/vk/vendor/yiisoft/yii2/base/Application.php(386): yii\\web\\Application->handleRequest(Object(yii\\web\\Request))\n#12 /var/www/vk/backend/web/index.php(23): yii\\base\\Application->run()\n#13 {main}\nAdditional Information:\nArray\n(\n    [0] => 22003\n    [1] => 1264\n    [2] => Out of range value for column \'created_at\' at row 1\n)\n'),
+(108, 1, 'yii\\base\\UnknownPropertyException', 1514397741.0313, '[backend][/backend/web/college/create]', 'yii\\base\\UnknownPropertyException: Getting unknown property: common\\models\\College::picture in /var/www/vk/vendor/yiisoft/yii2/base/Component.php:148\nStack trace:\n#0 /var/www/vk/vendor/yiisoft/yii2/db/BaseActiveRecord.php(288): yii\\base\\Component->__get(\'picture\')\n#1 /var/www/vk/vendor/yiisoft/yii2/helpers/BaseHtml.php(2121): yii\\db\\BaseActiveRecord->__get(\'picture\')\n#2 /var/www/vk/vendor/trntv/yii2-file-kit/src/widget/Upload.php(86): yii\\helpers\\BaseHtml::getAttributeValue(Object(common\\models\\College), \'picture\')\n#3 /var/www/vk/vendor/yiisoft/yii2/base/BaseObject.php(108): trntv\\filekit\\widget\\Upload->init()\n#4 [internal function]: yii\\base\\BaseObject->__construct(Array)\n#5 /var/www/vk/vendor/yiisoft/yii2/di/Container.php(381): ReflectionClass->newInstanceArgs(Array)\n#6 /var/www/vk/vendor/yiisoft/yii2/di/Container.php(156): yii\\di\\Container->build(\'trntv\\\\filekit\\\\w...\', Array, Array)\n#7 /var/www/vk/vendor/yiisoft/yii2/BaseYii.php(349): yii\\di\\Container->get(\'trntv\\\\filekit\\\\w...\', Array, Array)\n#8 /var/www/vk/vendor/yiisoft/yii2/base/Widget.php(137): yii\\BaseYii::createObject(Array)\n#9 /var/www/vk/vendor/yiisoft/yii2/widgets/ActiveField.php(725): yii\\base\\Widget::widget(Array)\n#10 /var/www/vk/backend/views/college/_form.php(24): yii\\widgets\\ActiveField->widget(\'trntv\\\\filekit\\\\w...\', Array)\n#11 /var/www/vk/vendor/yiisoft/yii2/base/View.php(332): require(\'/var/www/vk/bac...\')\n#12 /var/www/vk/vendor/yiisoft/yii2/base/View.php(250): yii\\base\\View->renderPhpFile(\'/var/www/vk/bac...\', Array)\n#13 /var/www/vk/vendor/yiisoft/yii2/base/View.php(152): yii\\base\\View->renderFile(\'/var/www/vk/bac...\', Array, NULL)\n#14 /var/www/vk/backend/views/college/create.php(16): yii\\base\\View->render(\'_form\', Array)\n#15 /var/www/vk/vendor/yiisoft/yii2/base/View.php(332): require(\'/var/www/vk/bac...\')\n#16 /var/www/vk/vendor/yiisoft/yii2/base/View.php(250): yii\\base\\View->renderPhpFile(\'/var/www/vk/bac...\', Array)\n#17 /var/www/vk/vendor/yiisoft/yii2/base/View.php(152): yii\\base\\View->renderFile(\'/var/www/vk/bac...\', Array, Object(backend\\controllers\\CollegeController))\n#18 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(384): yii\\base\\View->render(\'create\', Array, Object(backend\\controllers\\CollegeController))\n#19 /var/www/vk/backend/controllers/CollegeController.php(69): yii\\base\\Controller->render(\'create\', Array)\n#20 [internal function]: backend\\controllers\\CollegeController->actionCreate()\n#21 /var/www/vk/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)\n#22 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(157): yii\\base\\InlineAction->runWithParams(Array)\n#23 /var/www/vk/vendor/yiisoft/yii2/base/Module.php(528): yii\\base\\Controller->runAction(\'create\', Array)\n#24 /var/www/vk/vendor/yiisoft/yii2/web/Application.php(103): yii\\base\\Module->runAction(\'college/create\', Array)\n#25 /var/www/vk/vendor/yiisoft/yii2/base/Application.php(386): yii\\web\\Application->handleRequest(Object(yii\\web\\Request))\n#26 /var/www/vk/backend/web/index.php(23): yii\\base\\Application->run()\n#27 {main}'),
+(109, 1, 'Error', 1514397900.8807, '[backend][/backend/web/college/create]', 'Error: Class \'ArrayHelper\' not found in /var/www/vk/backend/views/college/_form.php:41\nStack trace:\n#0 /var/www/vk/vendor/yiisoft/yii2/base/View.php(332): require()\n#1 /var/www/vk/vendor/yiisoft/yii2/base/View.php(250): yii\\base\\View->renderPhpFile(\'/var/www/vk/bac...\', Array)\n#2 /var/www/vk/vendor/yiisoft/yii2/base/View.php(152): yii\\base\\View->renderFile(\'/var/www/vk/bac...\', Array, NULL)\n#3 /var/www/vk/backend/views/college/create.php(16): yii\\base\\View->render(\'_form\', Array)\n#4 /var/www/vk/vendor/yiisoft/yii2/base/View.php(332): require(\'/var/www/vk/bac...\')\n#5 /var/www/vk/vendor/yiisoft/yii2/base/View.php(250): yii\\base\\View->renderPhpFile(\'/var/www/vk/bac...\', Array)\n#6 /var/www/vk/vendor/yiisoft/yii2/base/View.php(152): yii\\base\\View->renderFile(\'/var/www/vk/bac...\', Array, Object(backend\\controllers\\CollegeController))\n#7 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(384): yii\\base\\View->render(\'create\', Array, Object(backend\\controllers\\CollegeController))\n#8 /var/www/vk/backend/controllers/CollegeController.php(69): yii\\base\\Controller->render(\'create\', Array)\n#9 [internal function]: backend\\controllers\\CollegeController->actionCreate()\n#10 /var/www/vk/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)\n#11 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(157): yii\\base\\InlineAction->runWithParams(Array)\n#12 /var/www/vk/vendor/yiisoft/yii2/base/Module.php(528): yii\\base\\Controller->runAction(\'create\', Array)\n#13 /var/www/vk/vendor/yiisoft/yii2/web/Application.php(103): yii\\base\\Module->runAction(\'college/create\', Array)\n#14 /var/www/vk/vendor/yiisoft/yii2/base/Application.php(386): yii\\web\\Application->handleRequest(Object(yii\\web\\Request))\n#15 /var/www/vk/backend/web/index.php(23): yii\\base\\Application->run()\n#16 {main}'),
+(110, 1, 'Error', 1514397914.0337, '[backend][/backend/web/college/create]', 'Error: Class \'University\' not found in /var/www/vk/backend/views/college/_form.php:42\nStack trace:\n#0 /var/www/vk/vendor/yiisoft/yii2/base/View.php(332): require()\n#1 /var/www/vk/vendor/yiisoft/yii2/base/View.php(250): yii\\base\\View->renderPhpFile(\'/var/www/vk/bac...\', Array)\n#2 /var/www/vk/vendor/yiisoft/yii2/base/View.php(152): yii\\base\\View->renderFile(\'/var/www/vk/bac...\', Array, NULL)\n#3 /var/www/vk/backend/views/college/create.php(16): yii\\base\\View->render(\'_form\', Array)\n#4 /var/www/vk/vendor/yiisoft/yii2/base/View.php(332): require(\'/var/www/vk/bac...\')\n#5 /var/www/vk/vendor/yiisoft/yii2/base/View.php(250): yii\\base\\View->renderPhpFile(\'/var/www/vk/bac...\', Array)\n#6 /var/www/vk/vendor/yiisoft/yii2/base/View.php(152): yii\\base\\View->renderFile(\'/var/www/vk/bac...\', Array, Object(backend\\controllers\\CollegeController))\n#7 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(384): yii\\base\\View->render(\'create\', Array, Object(backend\\controllers\\CollegeController))\n#8 /var/www/vk/backend/controllers/CollegeController.php(69): yii\\base\\Controller->render(\'create\', Array)\n#9 [internal function]: backend\\controllers\\CollegeController->actionCreate()\n#10 /var/www/vk/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)\n#11 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(157): yii\\base\\InlineAction->runWithParams(Array)\n#12 /var/www/vk/vendor/yiisoft/yii2/base/Module.php(528): yii\\base\\Controller->runAction(\'create\', Array)\n#13 /var/www/vk/vendor/yiisoft/yii2/web/Application.php(103): yii\\base\\Module->runAction(\'college/create\', Array)\n#14 /var/www/vk/vendor/yiisoft/yii2/base/Application.php(386): yii\\web\\Application->handleRequest(Object(yii\\web\\Request))\n#15 /var/www/vk/backend/web/index.php(23): yii\\base\\Application->run()\n#16 {main}'),
+(111, 1, 'Error', 1514398130.8426, '[backend][/backend/web/college/index]', 'Error: Class \'University\' not found in /var/www/vk/backend/views/college/index.php:39\nStack trace:\n#0 /var/www/vk/vendor/yiisoft/yii2/base/View.php(332): require()\n#1 /var/www/vk/vendor/yiisoft/yii2/base/View.php(250): yii\\base\\View->renderPhpFile(\'/var/www/vk/bac...\', Array)\n#2 /var/www/vk/vendor/yiisoft/yii2/base/View.php(152): yii\\base\\View->renderFile(\'/var/www/vk/bac...\', Array, Object(backend\\controllers\\CollegeController))\n#3 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(384): yii\\base\\View->render(\'index\', Array, Object(backend\\controllers\\CollegeController))\n#4 /var/www/vk/backend/controllers/CollegeController.php(40): yii\\base\\Controller->render(\'index\', Array)\n#5 [internal function]: backend\\controllers\\CollegeController->actionIndex()\n#6 /var/www/vk/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)\n#7 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(157): yii\\base\\InlineAction->runWithParams(Array)\n#8 /var/www/vk/vendor/yiisoft/yii2/base/Module.php(528): yii\\base\\Controller->runAction(\'index\', Array)\n#9 /var/www/vk/vendor/yiisoft/yii2/web/Application.php(103): yii\\base\\Module->runAction(\'college/index\', Array)\n#10 /var/www/vk/vendor/yiisoft/yii2/base/Application.php(386): yii\\web\\Application->handleRequest(Object(yii\\web\\Request))\n#11 /var/www/vk/backend/web/index.php(23): yii\\base\\Application->run()\n#12 {main}'),
+(112, 1, 'Error', 1514398146.2118, '[backend][/backend/web/college/index]', 'Error: Class \'common\\models\\university\' not found in /var/www/vk/backend/views/college/index.php:40\nStack trace:\n#0 /var/www/vk/vendor/yiisoft/yii2/base/View.php(332): require()\n#1 /var/www/vk/vendor/yiisoft/yii2/base/View.php(250): yii\\base\\View->renderPhpFile(\'/var/www/vk/bac...\', Array)\n#2 /var/www/vk/vendor/yiisoft/yii2/base/View.php(152): yii\\base\\View->renderFile(\'/var/www/vk/bac...\', Array, Object(backend\\controllers\\CollegeController))\n#3 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(384): yii\\base\\View->render(\'index\', Array, Object(backend\\controllers\\CollegeController))\n#4 /var/www/vk/backend/controllers/CollegeController.php(40): yii\\base\\Controller->render(\'index\', Array)\n#5 [internal function]: backend\\controllers\\CollegeController->actionIndex()\n#6 /var/www/vk/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)\n#7 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(157): yii\\base\\InlineAction->runWithParams(Array)\n#8 /var/www/vk/vendor/yiisoft/yii2/base/Module.php(528): yii\\base\\Controller->runAction(\'index\', Array)\n#9 /var/www/vk/vendor/yiisoft/yii2/web/Application.php(103): yii\\base\\Module->runAction(\'college/index\', Array)\n#10 /var/www/vk/vendor/yiisoft/yii2/base/Application.php(386): yii\\web\\Application->handleRequest(Object(yii\\web\\Request))\n#11 /var/www/vk/backend/web/index.php(23): yii\\base\\Application->run()\n#12 {main}'),
+(113, 1, 'yii\\base\\ErrorException:2', 1514398152.1736, '[backend][/backend/web/college/index]', 'yii\\base\\ErrorException: htmlspecialchars() expects parameter 1 to be string, object given in /var/www/vk/vendor/yiisoft/yii2/helpers/BaseHtml.php:111\nStack trace:\n#0 [internal function]: yii\\base\\ErrorHandler->handleError(2, \'htmlspecialchar...\', \'/var/www/vk/ven...\', 111, Array)\n#1 /var/www/vk/vendor/yiisoft/yii2/helpers/BaseHtml.php(111): htmlspecialchars(Object(common\\models\\University), 11, \'UTF-8\', true)\n#2 /var/www/vk/vendor/yiisoft/yii2/helpers/BaseHtml.php(1800): yii\\helpers\\BaseHtml::encode(Object(common\\models\\University))\n#3 /var/www/vk/vendor/yiisoft/yii2/helpers/BaseHtml.php(829): yii\\helpers\\BaseHtml::renderSelectOptions(NULL, Array, \'<span class="st...\')\n#4 /var/www/vk/vendor/yiisoft/yii2/helpers/BaseHtml.php(1737): yii\\helpers\\BaseHtml::dropDownList(\'CollegeSearch[u...\', NULL, Array, \'<span class="st...\')\n#5 /var/www/vk/vendor/yiisoft/yii2/helpers/BaseHtml.php(1567): yii\\helpers\\BaseHtml::activeListInput(\'dropDownList\', Object(common\\models\\CollegeSearch), \'university_id\', Array, Array)\n#6 /var/www/vk/vendor/yiisoft/yii2/grid/DataColumn.php(195): yii\\helpers\\BaseHtml::activeDropDownList(Object(common\\models\\CollegeSearch), \'university_id\', Array, Array)\n#7 /var/www/vk/vendor/yiisoft/yii2/grid/Column.php(119): yii\\grid\\DataColumn->renderFilterCellContent()\n#8 /var/www/vk/vendor/yiisoft/yii2/grid/GridView.php(444): yii\\grid\\Column->renderFilterCell()\n#9 /var/www/vk/vendor/yiisoft/yii2/grid/GridView.php(409): yii\\grid\\GridView->renderFilters()\n#10 /var/www/vk/vendor/yiisoft/yii2/grid/GridView.php(346): yii\\grid\\GridView->renderTableHeader()\n#11 /var/www/vk/vendor/yiisoft/yii2/widgets/BaseListView.php(160): yii\\grid\\GridView->renderItems()\n#12 /var/www/vk/vendor/yiisoft/yii2/grid/GridView.php(316): yii\\widgets\\BaseListView->renderSection(\'{items}\')\n#13 /var/www/vk/vendor/yiisoft/yii2/widgets/BaseListView.php(135): yii\\grid\\GridView->renderSection(\'{items}\')\n#14 [internal function]: yii\\widgets\\BaseListView->yii\\widgets\\{closure}(Array)\n#15 /var/www/vk/vendor/yiisoft/yii2/widgets/BaseListView.php(138): preg_replace_callback(\'/{\\\\w+}/\', Object(Closure), \'{summary}\\n{item...\')\n#16 /var/www/vk/vendor/yiisoft/yii2/grid/GridView.php(291): yii\\widgets\\BaseListView->run()\n#17 /var/www/vk/vendor/yiisoft/yii2/base/Widget.php(140): yii\\grid\\GridView->run()\n#18 /var/www/vk/backend/views/college/index.php(21): yii\\base\\Widget::widget(Array)\n#19 /var/www/vk/vendor/yiisoft/yii2/base/View.php(332): require(\'/var/www/vk/bac...\')\n#20 /var/www/vk/vendor/yiisoft/yii2/base/View.php(250): yii\\base\\View->renderPhpFile(\'/var/www/vk/bac...\', Array)\n#21 /var/www/vk/vendor/yiisoft/yii2/base/View.php(152): yii\\base\\View->renderFile(\'/var/www/vk/bac...\', Array, Object(backend\\controllers\\CollegeController))\n#22 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(384): yii\\base\\View->render(\'index\', Array, Object(backend\\controllers\\CollegeController))\n#23 /var/www/vk/backend/controllers/CollegeController.php(40): yii\\base\\Controller->render(\'index\', Array)\n#24 [internal function]: backend\\controllers\\CollegeController->actionIndex()\n#25 /var/www/vk/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)\n#26 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(157): yii\\base\\InlineAction->runWithParams(Array)\n#27 /var/www/vk/vendor/yiisoft/yii2/base/Module.php(528): yii\\base\\Controller->runAction(\'index\', Array)\n#28 /var/www/vk/vendor/yiisoft/yii2/web/Application.php(103): yii\\base\\Module->runAction(\'college/index\', Array)\n#29 /var/www/vk/vendor/yiisoft/yii2/base/Application.php(386): yii\\web\\Application->handleRequest(Object(yii\\web\\Request))\n#30 /var/www/vk/backend/web/index.php(23): yii\\base\\Application->run()\n#31 {main}'),
+(114, 1, 'Error', 1514398274.3281, '[backend][/backend/web/college/index]', 'Error: Class \'ArrayHelper\' not found in /var/www/vk/backend/views/college/index.php:37\nStack trace:\n#0 /var/www/vk/vendor/yiisoft/yii2/base/View.php(332): require()\n#1 /var/www/vk/vendor/yiisoft/yii2/base/View.php(250): yii\\base\\View->renderPhpFile(\'/var/www/vk/bac...\', Array)\n#2 /var/www/vk/vendor/yiisoft/yii2/base/View.php(152): yii\\base\\View->renderFile(\'/var/www/vk/bac...\', Array, Object(backend\\controllers\\CollegeController))\n#3 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(384): yii\\base\\View->render(\'index\', Array, Object(backend\\controllers\\CollegeController))\n#4 /var/www/vk/backend/controllers/CollegeController.php(40): yii\\base\\Controller->render(\'index\', Array)\n#5 [internal function]: backend\\controllers\\CollegeController->actionIndex()\n#6 /var/www/vk/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)\n#7 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(157): yii\\base\\InlineAction->runWithParams(Array)\n#8 /var/www/vk/vendor/yiisoft/yii2/base/Module.php(528): yii\\base\\Controller->runAction(\'index\', Array)\n#9 /var/www/vk/vendor/yiisoft/yii2/web/Application.php(103): yii\\base\\Module->runAction(\'college/index\', Array)\n#10 /var/www/vk/vendor/yiisoft/yii2/base/Application.php(386): yii\\web\\Application->handleRequest(Object(yii\\web\\Request))\n#11 /var/www/vk/backend/web/index.php(23): yii\\base\\Application->run()\n#12 {main}'),
+(115, 1, 'yii\\base\\ErrorException:8', 1514428269.5181, '[backend][/backend/web/college/create]', 'yii\\base\\ErrorException: Undefined variable: template in /var/www/vk/backend/views/college/_form.php:31\nStack trace:\n#0 /var/www/vk/backend/views/college/_form.php(31): yii\\base\\ErrorHandler->handleError(8, \'Undefined varia...\', \'/var/www/vk/bac...\', 31, Array)\n#1 /var/www/vk/vendor/yiisoft/yii2/base/View.php(332): require(\'/var/www/vk/bac...\')\n#2 /var/www/vk/vendor/yiisoft/yii2/base/View.php(250): yii\\base\\View->renderPhpFile(\'/var/www/vk/bac...\', Array)\n#3 /var/www/vk/vendor/yiisoft/yii2/base/View.php(152): yii\\base\\View->renderFile(\'/var/www/vk/bac...\', Array, NULL)\n#4 /var/www/vk/backend/views/college/create.php(16): yii\\base\\View->render(\'_form\', Array)\n#5 /var/www/vk/vendor/yiisoft/yii2/base/View.php(332): require(\'/var/www/vk/bac...\')\n#6 /var/www/vk/vendor/yiisoft/yii2/base/View.php(250): yii\\base\\View->renderPhpFile(\'/var/www/vk/bac...\', Array)\n#7 /var/www/vk/vendor/yiisoft/yii2/base/View.php(152): yii\\base\\View->renderFile(\'/var/www/vk/bac...\', Array, Object(backend\\controllers\\CollegeController))\n#8 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(384): yii\\base\\View->render(\'create\', Array, Object(backend\\controllers\\CollegeController))\n#9 /var/www/vk/backend/controllers/CollegeController.php(69): yii\\base\\Controller->render(\'create\', Array)\n#10 [internal function]: backend\\controllers\\CollegeController->actionCreate()\n#11 /var/www/vk/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)\n#12 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(157): yii\\base\\InlineAction->runWithParams(Array)\n#13 /var/www/vk/vendor/yiisoft/yii2/base/Module.php(528): yii\\base\\Controller->runAction(\'create\', Array)\n#14 /var/www/vk/vendor/yiisoft/yii2/web/Application.php(103): yii\\base\\Module->runAction(\'college/create\', Array)\n#15 /var/www/vk/vendor/yiisoft/yii2/base/Application.php(386): yii\\web\\Application->handleRequest(Object(yii\\web\\Request))\n#16 /var/www/vk/backend/web/index.php(23): yii\\base\\Application->run()\n#17 {main}'),
+(116, 1, 'Error', 1514434395.3125, '[backend][/backend/web/college/index]', 'Error: Class \'City\' not found in /var/www/vk/backend/views/college/index.php:51\nStack trace:\n#0 /var/www/vk/vendor/yiisoft/yii2/base/View.php(332): require()\n#1 /var/www/vk/vendor/yiisoft/yii2/base/View.php(250): yii\\base\\View->renderPhpFile(\'/var/www/vk/bac...\', Array)\n#2 /var/www/vk/vendor/yiisoft/yii2/base/View.php(152): yii\\base\\View->renderFile(\'/var/www/vk/bac...\', Array, Object(backend\\controllers\\CollegeController))\n#3 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(384): yii\\base\\View->render(\'index\', Array, Object(backend\\controllers\\CollegeController))\n#4 /var/www/vk/backend/controllers/CollegeController.php(40): yii\\base\\Controller->render(\'index\', Array)\n#5 [internal function]: backend\\controllers\\CollegeController->actionIndex()\n#6 /var/www/vk/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)\n#7 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(157): yii\\base\\InlineAction->runWithParams(Array)\n#8 /var/www/vk/vendor/yiisoft/yii2/base/Module.php(528): yii\\base\\Controller->runAction(\'index\', Array)\n#9 /var/www/vk/vendor/yiisoft/yii2/web/Application.php(103): yii\\base\\Module->runAction(\'college/index\', Array)\n#10 /var/www/vk/vendor/yiisoft/yii2/base/Application.php(386): yii\\web\\Application->handleRequest(Object(yii\\web\\Request))\n#11 /var/www/vk/backend/web/index.php(23): yii\\base\\Application->run()\n#12 {main}'),
+(117, 1, 'yii\\base\\ErrorException:8', 1514434404.9301, '[backend][/backend/web/college/index]', 'yii\\base\\ErrorException: Trying to get property of non-object in /var/www/vk/backend/views/college/index.php:54\nStack trace:\n#0 /var/www/vk/backend/views/college/index.php(54): yii\\base\\ErrorHandler->handleError(8, \'Trying to get p...\', \'/var/www/vk/bac...\', 54, Array)\n#1 [internal function]: yii\\base\\View->{closure}(Object(common\\models\\College), 1, 0, Object(yii\\grid\\DataColumn))\n#2 /var/www/vk/vendor/yiisoft/yii2/grid/DataColumn.php(224): call_user_func(Object(Closure), Object(common\\models\\College), 1, 0, Object(yii\\grid\\DataColumn))\n#3 /var/www/vk/vendor/yiisoft/yii2/grid/DataColumn.php(238): yii\\grid\\DataColumn->getDataCellValue(Object(common\\models\\College), 1, 0)\n#4 /var/www/vk/vendor/yiisoft/yii2/grid/Column.php(111): yii\\grid\\DataColumn->renderDataCellContent(Object(common\\models\\College), 1, 0)\n#5 /var/www/vk/vendor/yiisoft/yii2/grid/GridView.php(502): yii\\grid\\Column->renderDataCell(Object(common\\models\\College), 1, 0)\n#6 /var/www/vk/vendor/yiisoft/yii2/grid/GridView.php(471): yii\\grid\\GridView->renderTableRow(Object(common\\models\\College), 1, 0)\n#7 /var/www/vk/vendor/yiisoft/yii2/grid/GridView.php(347): yii\\grid\\GridView->renderTableBody()\n#8 /var/www/vk/vendor/yiisoft/yii2/widgets/BaseListView.php(160): yii\\grid\\GridView->renderItems()\n#9 /var/www/vk/vendor/yiisoft/yii2/grid/GridView.php(316): yii\\widgets\\BaseListView->renderSection(\'{items}\')\n#10 /var/www/vk/vendor/yiisoft/yii2/widgets/BaseListView.php(135): yii\\grid\\GridView->renderSection(\'{items}\')\n#11 [internal function]: yii\\widgets\\BaseListView->yii\\widgets\\{closure}(Array)\n#12 /var/www/vk/vendor/yiisoft/yii2/widgets/BaseListView.php(138): preg_replace_callback(\'/{\\\\w+}/\', Object(Closure), \'{summary}\\n{item...\')\n#13 /var/www/vk/vendor/yiisoft/yii2/grid/GridView.php(291): yii\\widgets\\BaseListView->run()\n#14 /var/www/vk/vendor/yiisoft/yii2/base/Widget.php(140): yii\\grid\\GridView->run()\n#15 /var/www/vk/backend/views/college/index.php(23): yii\\base\\Widget::widget(Array)\n#16 /var/www/vk/vendor/yiisoft/yii2/base/View.php(332): require(\'/var/www/vk/bac...\')\n#17 /var/www/vk/vendor/yiisoft/yii2/base/View.php(250): yii\\base\\View->renderPhpFile(\'/var/www/vk/bac...\', Array)\n#18 /var/www/vk/vendor/yiisoft/yii2/base/View.php(152): yii\\base\\View->renderFile(\'/var/www/vk/bac...\', Array, Object(backend\\controllers\\CollegeController))\n#19 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(384): yii\\base\\View->render(\'index\', Array, Object(backend\\controllers\\CollegeController))\n#20 /var/www/vk/backend/controllers/CollegeController.php(40): yii\\base\\Controller->render(\'index\', Array)\n#21 [internal function]: backend\\controllers\\CollegeController->actionIndex()\n#22 /var/www/vk/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)\n#23 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(157): yii\\base\\InlineAction->runWithParams(Array)\n#24 /var/www/vk/vendor/yiisoft/yii2/base/Module.php(528): yii\\base\\Controller->runAction(\'index\', Array)\n#25 /var/www/vk/vendor/yiisoft/yii2/web/Application.php(103): yii\\base\\Module->runAction(\'college/index\', Array)\n#26 /var/www/vk/vendor/yiisoft/yii2/base/Application.php(386): yii\\web\\Application->handleRequest(Object(yii\\web\\Request))\n#27 /var/www/vk/backend/web/index.php(23): yii\\base\\Application->run()\n#28 {main}'),
+(118, 1, 'yii\\base\\ErrorException:8', 1514434465.5079, '[backend][/backend/web/college/index]', 'yii\\base\\ErrorException: Trying to get property of non-object in /var/www/vk/backend/views/college/index.php:54\nStack trace:\n#0 /var/www/vk/backend/views/college/index.php(54): yii\\base\\ErrorHandler->handleError(8, \'Trying to get p...\', \'/var/www/vk/bac...\', 54, Array)\n#1 [internal function]: yii\\base\\View->{closure}(Object(common\\models\\College), 1, 0, Object(yii\\grid\\DataColumn))\n#2 /var/www/vk/vendor/yiisoft/yii2/grid/DataColumn.php(224): call_user_func(Object(Closure), Object(common\\models\\College), 1, 0, Object(yii\\grid\\DataColumn))\n#3 /var/www/vk/vendor/yiisoft/yii2/grid/DataColumn.php(238): yii\\grid\\DataColumn->getDataCellValue(Object(common\\models\\College), 1, 0)\n#4 /var/www/vk/vendor/yiisoft/yii2/grid/Column.php(111): yii\\grid\\DataColumn->renderDataCellContent(Object(common\\models\\College), 1, 0)\n#5 /var/www/vk/vendor/yiisoft/yii2/grid/GridView.php(502): yii\\grid\\Column->renderDataCell(Object(common\\models\\College), 1, 0)\n#6 /var/www/vk/vendor/yiisoft/yii2/grid/GridView.php(471): yii\\grid\\GridView->renderTableRow(Object(common\\models\\College), 1, 0)\n#7 /var/www/vk/vendor/yiisoft/yii2/grid/GridView.php(347): yii\\grid\\GridView->renderTableBody()\n#8 /var/www/vk/vendor/yiisoft/yii2/widgets/BaseListView.php(160): yii\\grid\\GridView->renderItems()\n#9 /var/www/vk/vendor/yiisoft/yii2/grid/GridView.php(316): yii\\widgets\\BaseListView->renderSection(\'{items}\')\n#10 /var/www/vk/vendor/yiisoft/yii2/widgets/BaseListView.php(135): yii\\grid\\GridView->renderSection(\'{items}\')\n#11 [internal function]: yii\\widgets\\BaseListView->yii\\widgets\\{closure}(Array)\n#12 /var/www/vk/vendor/yiisoft/yii2/widgets/BaseListView.php(138): preg_replace_callback(\'/{\\\\w+}/\', Object(Closure), \'{summary}\\n{item...\')\n#13 /var/www/vk/vendor/yiisoft/yii2/grid/GridView.php(291): yii\\widgets\\BaseListView->run()\n#14 /var/www/vk/vendor/yiisoft/yii2/base/Widget.php(140): yii\\grid\\GridView->run()\n#15 /var/www/vk/backend/views/college/index.php(23): yii\\base\\Widget::widget(Array)\n#16 /var/www/vk/vendor/yiisoft/yii2/base/View.php(332): require(\'/var/www/vk/bac...\')\n#17 /var/www/vk/vendor/yiisoft/yii2/base/View.php(250): yii\\base\\View->renderPhpFile(\'/var/www/vk/bac...\', Array)\n#18 /var/www/vk/vendor/yiisoft/yii2/base/View.php(152): yii\\base\\View->renderFile(\'/var/www/vk/bac...\', Array, Object(backend\\controllers\\CollegeController))\n#19 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(384): yii\\base\\View->render(\'index\', Array, Object(backend\\controllers\\CollegeController))\n#20 /var/www/vk/backend/controllers/CollegeController.php(40): yii\\base\\Controller->render(\'index\', Array)\n#21 [internal function]: backend\\controllers\\CollegeController->actionIndex()\n#22 /var/www/vk/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)\n#23 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(157): yii\\base\\InlineAction->runWithParams(Array)\n#24 /var/www/vk/vendor/yiisoft/yii2/base/Module.php(528): yii\\base\\Controller->runAction(\'index\', Array)\n#25 /var/www/vk/vendor/yiisoft/yii2/web/Application.php(103): yii\\base\\Module->runAction(\'college/index\', Array)\n#26 /var/www/vk/vendor/yiisoft/yii2/base/Application.php(386): yii\\web\\Application->handleRequest(Object(yii\\web\\Request))\n#27 /var/www/vk/backend/web/index.php(23): yii\\base\\Application->run()\n#28 {main}');
+INSERT INTO `system_log` (`id`, `level`, `category`, `log_time`, `prefix`, `message`) VALUES
+(119, 1, 'yii\\base\\ErrorException:8', 1514434478.8188, '[backend][/backend/web/college/index]', 'yii\\base\\ErrorException: Trying to get property of non-object in /var/www/vk/backend/views/college/index.php:48\nStack trace:\n#0 /var/www/vk/backend/views/college/index.php(48): yii\\base\\ErrorHandler->handleError(8, \'Trying to get p...\', \'/var/www/vk/bac...\', 48, Array)\n#1 [internal function]: yii\\base\\View->{closure}(Object(common\\models\\College), 1, 0, Object(yii\\grid\\DataColumn))\n#2 /var/www/vk/vendor/yiisoft/yii2/grid/DataColumn.php(224): call_user_func(Object(Closure), Object(common\\models\\College), 1, 0, Object(yii\\grid\\DataColumn))\n#3 /var/www/vk/vendor/yiisoft/yii2/grid/DataColumn.php(238): yii\\grid\\DataColumn->getDataCellValue(Object(common\\models\\College), 1, 0)\n#4 /var/www/vk/vendor/yiisoft/yii2/grid/Column.php(111): yii\\grid\\DataColumn->renderDataCellContent(Object(common\\models\\College), 1, 0)\n#5 /var/www/vk/vendor/yiisoft/yii2/grid/GridView.php(502): yii\\grid\\Column->renderDataCell(Object(common\\models\\College), 1, 0)\n#6 /var/www/vk/vendor/yiisoft/yii2/grid/GridView.php(471): yii\\grid\\GridView->renderTableRow(Object(common\\models\\College), 1, 0)\n#7 /var/www/vk/vendor/yiisoft/yii2/grid/GridView.php(347): yii\\grid\\GridView->renderTableBody()\n#8 /var/www/vk/vendor/yiisoft/yii2/widgets/BaseListView.php(160): yii\\grid\\GridView->renderItems()\n#9 /var/www/vk/vendor/yiisoft/yii2/grid/GridView.php(316): yii\\widgets\\BaseListView->renderSection(\'{items}\')\n#10 /var/www/vk/vendor/yiisoft/yii2/widgets/BaseListView.php(135): yii\\grid\\GridView->renderSection(\'{items}\')\n#11 [internal function]: yii\\widgets\\BaseListView->yii\\widgets\\{closure}(Array)\n#12 /var/www/vk/vendor/yiisoft/yii2/widgets/BaseListView.php(138): preg_replace_callback(\'/{\\\\w+}/\', Object(Closure), \'{summary}\\n{item...\')\n#13 /var/www/vk/vendor/yiisoft/yii2/grid/GridView.php(291): yii\\widgets\\BaseListView->run()\n#14 /var/www/vk/vendor/yiisoft/yii2/base/Widget.php(140): yii\\grid\\GridView->run()\n#15 /var/www/vk/backend/views/college/index.php(23): yii\\base\\Widget::widget(Array)\n#16 /var/www/vk/vendor/yiisoft/yii2/base/View.php(332): require(\'/var/www/vk/bac...\')\n#17 /var/www/vk/vendor/yiisoft/yii2/base/View.php(250): yii\\base\\View->renderPhpFile(\'/var/www/vk/bac...\', Array)\n#18 /var/www/vk/vendor/yiisoft/yii2/base/View.php(152): yii\\base\\View->renderFile(\'/var/www/vk/bac...\', Array, Object(backend\\controllers\\CollegeController))\n#19 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(384): yii\\base\\View->render(\'index\', Array, Object(backend\\controllers\\CollegeController))\n#20 /var/www/vk/backend/controllers/CollegeController.php(40): yii\\base\\Controller->render(\'index\', Array)\n#21 [internal function]: backend\\controllers\\CollegeController->actionIndex()\n#22 /var/www/vk/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)\n#23 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(157): yii\\base\\InlineAction->runWithParams(Array)\n#24 /var/www/vk/vendor/yiisoft/yii2/base/Module.php(528): yii\\base\\Controller->runAction(\'index\', Array)\n#25 /var/www/vk/vendor/yiisoft/yii2/web/Application.php(103): yii\\base\\Module->runAction(\'college/index\', Array)\n#26 /var/www/vk/vendor/yiisoft/yii2/base/Application.php(386): yii\\web\\Application->handleRequest(Object(yii\\web\\Request))\n#27 /var/www/vk/backend/web/index.php(23): yii\\base\\Application->run()\n#28 {main}'),
+(120, 1, 'yii\\base\\ErrorException:8', 1514434509.9699, '[backend][/backend/web/college/index]', 'yii\\base\\ErrorException: Trying to get property of non-object in /var/www/vk/backend/views/college/index.php:48\nStack trace:\n#0 /var/www/vk/backend/views/college/index.php(48): yii\\base\\ErrorHandler->handleError(8, \'Trying to get p...\', \'/var/www/vk/bac...\', 48, Array)\n#1 [internal function]: yii\\base\\View->{closure}(Object(common\\models\\College), 1, 0, Object(yii\\grid\\DataColumn))\n#2 /var/www/vk/vendor/yiisoft/yii2/grid/DataColumn.php(224): call_user_func(Object(Closure), Object(common\\models\\College), 1, 0, Object(yii\\grid\\DataColumn))\n#3 /var/www/vk/vendor/yiisoft/yii2/grid/DataColumn.php(238): yii\\grid\\DataColumn->getDataCellValue(Object(common\\models\\College), 1, 0)\n#4 /var/www/vk/vendor/yiisoft/yii2/grid/Column.php(111): yii\\grid\\DataColumn->renderDataCellContent(Object(common\\models\\College), 1, 0)\n#5 /var/www/vk/vendor/yiisoft/yii2/grid/GridView.php(502): yii\\grid\\Column->renderDataCell(Object(common\\models\\College), 1, 0)\n#6 /var/www/vk/vendor/yiisoft/yii2/grid/GridView.php(471): yii\\grid\\GridView->renderTableRow(Object(common\\models\\College), 1, 0)\n#7 /var/www/vk/vendor/yiisoft/yii2/grid/GridView.php(347): yii\\grid\\GridView->renderTableBody()\n#8 /var/www/vk/vendor/yiisoft/yii2/widgets/BaseListView.php(160): yii\\grid\\GridView->renderItems()\n#9 /var/www/vk/vendor/yiisoft/yii2/grid/GridView.php(316): yii\\widgets\\BaseListView->renderSection(\'{items}\')\n#10 /var/www/vk/vendor/yiisoft/yii2/widgets/BaseListView.php(135): yii\\grid\\GridView->renderSection(\'{items}\')\n#11 [internal function]: yii\\widgets\\BaseListView->yii\\widgets\\{closure}(Array)\n#12 /var/www/vk/vendor/yiisoft/yii2/widgets/BaseListView.php(138): preg_replace_callback(\'/{\\\\w+}/\', Object(Closure), \'{summary}\\n{item...\')\n#13 /var/www/vk/vendor/yiisoft/yii2/grid/GridView.php(291): yii\\widgets\\BaseListView->run()\n#14 /var/www/vk/vendor/yiisoft/yii2/base/Widget.php(140): yii\\grid\\GridView->run()\n#15 /var/www/vk/backend/views/college/index.php(23): yii\\base\\Widget::widget(Array)\n#16 /var/www/vk/vendor/yiisoft/yii2/base/View.php(332): require(\'/var/www/vk/bac...\')\n#17 /var/www/vk/vendor/yiisoft/yii2/base/View.php(250): yii\\base\\View->renderPhpFile(\'/var/www/vk/bac...\', Array)\n#18 /var/www/vk/vendor/yiisoft/yii2/base/View.php(152): yii\\base\\View->renderFile(\'/var/www/vk/bac...\', Array, Object(backend\\controllers\\CollegeController))\n#19 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(384): yii\\base\\View->render(\'index\', Array, Object(backend\\controllers\\CollegeController))\n#20 /var/www/vk/backend/controllers/CollegeController.php(40): yii\\base\\Controller->render(\'index\', Array)\n#21 [internal function]: backend\\controllers\\CollegeController->actionIndex()\n#22 /var/www/vk/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)\n#23 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(157): yii\\base\\InlineAction->runWithParams(Array)\n#24 /var/www/vk/vendor/yiisoft/yii2/base/Module.php(528): yii\\base\\Controller->runAction(\'index\', Array)\n#25 /var/www/vk/vendor/yiisoft/yii2/web/Application.php(103): yii\\base\\Module->runAction(\'college/index\', Array)\n#26 /var/www/vk/vendor/yiisoft/yii2/base/Application.php(386): yii\\web\\Application->handleRequest(Object(yii\\web\\Request))\n#27 /var/www/vk/backend/web/index.php(23): yii\\base\\Application->run()\n#28 {main}'),
+(121, 1, 'yii\\db\\Exception', 1514475627.9426, '[frontend][/frontend/web/page/about]', 'PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table \'vk.page\' doesn\'t exist in /var/www/vk/vendor/yiisoft/yii2/db/Command.php:1067\nStack trace:\n#0 /var/www/vk/vendor/yiisoft/yii2/db/Command.php(1067): PDOStatement->execute()\n#1 /var/www/vk/vendor/yiisoft/yii2/db/Command.php(400): yii\\db\\Command->queryInternal(\'fetch\', NULL)\n#2 /var/www/vk/vendor/yiisoft/yii2/db/Query.php(259): yii\\db\\Command->queryOne()\n#3 /var/www/vk/vendor/yiisoft/yii2/db/ActiveQuery.php(292): yii\\db\\Query->one(NULL)\n#4 /var/www/vk/frontend/controllers/PageController.php(20): yii\\db\\ActiveQuery->one()\n#5 [internal function]: frontend\\controllers\\PageController->actionView(\'about\')\n#6 /var/www/vk/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)\n#7 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(157): yii\\base\\InlineAction->runWithParams(Array)\n#8 /var/www/vk/vendor/yiisoft/yii2/base/Module.php(528): yii\\base\\Controller->runAction(\'view\', Array)\n#9 /var/www/vk/vendor/yiisoft/yii2/web/Application.php(103): yii\\base\\Module->runAction(\'page/view\', Array)\n#10 /var/www/vk/vendor/yiisoft/yii2/base/Application.php(386): yii\\web\\Application->handleRequest(Object(yii\\web\\Request))\n#11 /var/www/vk/frontend/web/index.php(22): yii\\base\\Application->run()\n#12 {main}\n\nNext yii\\db\\Exception: SQLSTATE[42S02]: Base table or view not found: 1146 Table \'vk.page\' doesn\'t exist\nThe SQL being executed was: SELECT * FROM `page` WHERE (`slug`=\'about\') AND (`status`=1) in /var/www/vk/vendor/yiisoft/yii2/db/Schema.php:595\nStack trace:\n#0 /var/www/vk/vendor/yiisoft/yii2/db/Command.php(1082): yii\\db\\Schema->convertException(Object(PDOException), \'SELECT * FROM `...\')\n#1 /var/www/vk/vendor/yiisoft/yii2/db/Command.php(400): yii\\db\\Command->queryInternal(\'fetch\', NULL)\n#2 /var/www/vk/vendor/yiisoft/yii2/db/Query.php(259): yii\\db\\Command->queryOne()\n#3 /var/www/vk/vendor/yiisoft/yii2/db/ActiveQuery.php(292): yii\\db\\Query->one(NULL)\n#4 /var/www/vk/frontend/controllers/PageController.php(20): yii\\db\\ActiveQuery->one()\n#5 [internal function]: frontend\\controllers\\PageController->actionView(\'about\')\n#6 /var/www/vk/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)\n#7 /var/www/vk/vendor/yiisoft/yii2/base/Controller.php(157): yii\\base\\InlineAction->runWithParams(Array)\n#8 /var/www/vk/vendor/yiisoft/yii2/base/Module.php(528): yii\\base\\Controller->runAction(\'view\', Array)\n#9 /var/www/vk/vendor/yiisoft/yii2/web/Application.php(103): yii\\base\\Module->runAction(\'page/view\', Array)\n#10 /var/www/vk/vendor/yiisoft/yii2/base/Application.php(386): yii\\web\\Application->handleRequest(Object(yii\\web\\Request))\n#11 /var/www/vk/frontend/web/index.php(22): yii\\base\\Application->run()\n#12 {main}\nAdditional Information:\nArray\n(\n    [0] => 42S02\n    [1] => 1146\n    [2] => Table \'vk.page\' doesn\'t exist\n)\n');
 
 -- --------------------------------------------------------
 
@@ -463,6 +636,29 @@ INSERT INTO `timeline_event` (`id`, `application`, `category`, `event`, `data`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `university`
+--
+
+CREATE TABLE `university` (
+  `id` int(11) NOT NULL,
+  `name` varchar(56) NOT NULL,
+  `status` int(11) DEFAULT NULL,
+  `image_path` text,
+  `image_base_url` text,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `university`
+--
+
+INSERT INTO `university` (`id`, `name`, `status`, `image_path`, `image_base_url`, `created_at`, `updated_at`) VALUES
+(1, 'Pune', 1, '1/bL9OGCzbtYXs41mADv89YVjfUuUVFN_c.jpeg', '/storage/source', '2017-12-27 23:12:34', '2017-12-27 23:14:11');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -486,7 +682,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `auth_key`, `access_token`, `password_hash`, `oauth_client`, `oauth_client_user_id`, `email`, `status`, `created_at`, `updated_at`, `logged_at`) VALUES
-(1, 'webmaster', 'QdA-N5pdqaAynQE4W0-Xefz430PjL06y', 'l6aJrVxE1BLgVF3DSEqBeAC3q6U875f4GVelrfq_', '$2y$13$bwWS3FeYjO9/kl/oe1wNIuESUb5KppdOnaq2V.YVWR1.S3cafJTFi', NULL, NULL, 'webmaster@example.com', 2, 1499690417, 1499690417, 1514000597),
+(1, 'webmaster', 'QdA-N5pdqaAynQE4W0-Xefz430PjL06y', 'l6aJrVxE1BLgVF3DSEqBeAC3q6U875f4GVelrfq_', '$2y$13$bwWS3FeYjO9/kl/oe1wNIuESUb5KppdOnaq2V.YVWR1.S3cafJTFi', NULL, NULL, 'webmaster@example.com', 2, 1499690417, 1499690417, 1514472375),
 (2, 'manager', 'YyypLMf2YkxN81x2vDyb7be-R8_oKIb3', 'dpZODBP3qG0Vm88WL0vOq6zYES2ekF8Fwae5WKnu', '$2y$13$TEpHkaB/jRmBtj/2xZrOYOqi9FqaCXGHVV39YqzU3cdF3QWyoOgJ.', NULL, NULL, 'manager@example.com', 2, 1499690417, 1499690417, NULL),
 (3, 'user', 'EHGxX0DBBk-4etWSHTkBbugJmiax98g2', 'ZKvD75SEtoQmVeSB-4kynATUAC71OA00eJicFJKT', '$2y$13$0EiH0nwGXZHXJxCNBSW0T.eknTkM.WZ5EjrU2YWZBy4FYgYrKhiFq', NULL, NULL, 'user@example.com', 2, 1499690418, 1499690418, NULL);
 
@@ -653,6 +849,39 @@ ALTER TABLE `article_category`
   ADD KEY `fk_article_category_section` (`parent_id`);
 
 --
+-- Indexes for table `branch`
+--
+ALTER TABLE `branch`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `caste`
+--
+ALTER TABLE `caste`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `city`
+--
+ALTER TABLE `city`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `college`
+--
+ALTER TABLE `college`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `university_id` (`university_id`),
+  ADD KEY `city_id` (`city_id`);
+
+--
+-- Indexes for table `college_attachment`
+--
+ALTER TABLE `college_attachment`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_coupons_attachment_coupons` (`college_id`);
+
+--
 -- Indexes for table `file_storage_item`
 --
 ALTER TABLE `file_storage_item`
@@ -705,6 +934,12 @@ ALTER TABLE `rbac_auth_rule`
   ADD PRIMARY KEY (`name`);
 
 --
+-- Indexes for table `stream`
+--
+ALTER TABLE `stream`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `system_db_migration`
 --
 ALTER TABLE `system_db_migration`
@@ -730,6 +965,12 @@ ALTER TABLE `system_rbac_migration`
 ALTER TABLE `timeline_event`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idx_created_at` (`created_at`);
+
+--
+-- Indexes for table `university`
+--
+ALTER TABLE `university`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user`
@@ -795,25 +1036,60 @@ ALTER TABLE `article_attachment`
 ALTER TABLE `article_category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
+-- AUTO_INCREMENT for table `branch`
+--
+ALTER TABLE `branch`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `caste`
+--
+ALTER TABLE `caste`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `city`
+--
+ALTER TABLE `city`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `college`
+--
+ALTER TABLE `college`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `college_attachment`
+--
+ALTER TABLE `college_attachment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT for table `file_storage_item`
 --
 ALTER TABLE `file_storage_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `i18n_source_message`
 --
 ALTER TABLE `i18n_source_message`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `stream`
+--
+ALTER TABLE `stream`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
 -- AUTO_INCREMENT for table `system_log`
 --
 ALTER TABLE `system_log`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
 --
 -- AUTO_INCREMENT for table `timeline_event`
 --
 ALTER TABLE `timeline_event`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `university`
+--
+ALTER TABLE `university`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `user`
 --
@@ -872,6 +1148,19 @@ ALTER TABLE `article_attachment`
 --
 ALTER TABLE `article_category`
   ADD CONSTRAINT `fk_article_category_section` FOREIGN KEY (`parent_id`) REFERENCES `article_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `college`
+--
+ALTER TABLE `college`
+  ADD CONSTRAINT `college_ibfk_1` FOREIGN KEY (`university_id`) REFERENCES `university` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `college_ibfk_2` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `college_attachment`
+--
+ALTER TABLE `college_attachment`
+  ADD CONSTRAINT `college_attachment_ibfk_1` FOREIGN KEY (`college_id`) REFERENCES `college` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `i18n_message`

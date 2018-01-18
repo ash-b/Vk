@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Courses', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="course-create">
-
+    <h1><?= Html::encode($this->title) ?></h1>
     <?php echo $this->render('_form', [
         'model' => $model,
     ]) ?>

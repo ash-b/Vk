@@ -64,4 +64,16 @@ class Course extends \yii\db\ActiveRecord
             'updated_at' => 'Updated At',
         ];
     }
+    public function getFees()
+    {
+        return $this->hasOne(FeesStructure::className(), ['id' => 'fees_id']);
+    }
+//    public function getCourse()
+//    {
+//        return $this->hasOne(Course::className(), ['id' => 'course_id']);
+//    }
+    public function getCourse() 
+    {
+        return $this->hasMany(Course::className(), ['id' => 'course_id'])->viaTable('course_has_fees', ['fees_id' => 'id'])->from('course c');
+    }
 }

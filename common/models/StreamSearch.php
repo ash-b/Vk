@@ -18,7 +18,7 @@ class StreamSearch extends Stream
     public function rules()
     {
         return [
-            [['id', 'status'], 'integer'],
+            [['id', 'status','parent_stream'], 'integer'],
             [['name', 'description', 'created_at', 'updated_at'], 'safe'],
         ];
     }
@@ -60,6 +60,7 @@ class StreamSearch extends Stream
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'parent_stream' => $this->parent_stream,
             'status' => $this->status,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

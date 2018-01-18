@@ -82,7 +82,21 @@ class CourseController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            //echo "<pre>"; print_r(Yii::$app->request->post()); die;
+            $existing_cats = \common\models\CourseHasFees::find()->where(['course_id'=>$model->id])->all();
+            if(!empty($existing_cats)){
+                foreach($existing_cats as $ex_cat) {
+                    $ex_cat->delete();
+                }
+            }
+            $fees= Yii::$app->request->post('fees_structure');
+            if(!empty($fees)){
+                foreach($fees as $fee){
+                    $fee_new = \common\models\FeesStructure::findOne($fee);
+                    $model->link('course', $fee_new);
+                }
+            }
+            return $this->redirect(['index']);
         } else {
             return $this->render('update', [
                 'model' => $model,

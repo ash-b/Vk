@@ -44,9 +44,9 @@ class Stream extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            [['name','status'], 'required'],
             [['description'], 'string'],
-            [['status'], 'integer'],
+            [['status','parent_stream'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 56],
         ];
@@ -62,6 +62,7 @@ class Stream extends \yii\db\ActiveRecord
             'name' => 'Name',
             'description' => 'Description',
             'status' => 'Status',
+            'parent_stream' => 'Parent Stream',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];

@@ -100,6 +100,7 @@ class College extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'attachments' => 'Gallery Images',
+            'city_id'=>'City'
         ];
     }
 
@@ -117,5 +118,9 @@ class College extends \yii\db\ActiveRecord
     public function getCollegeAttachments()
     {
         return $this->hasMany(CollegeAttachment::className(), ['college_id' => 'id']);
+    }
+    public function getGallery()
+    {
+        return $this->hasMany(Gallery::className(), ['id' => 'gallery_id'])->viaTable('college_has_gallery', ['college_id' => 'id'])->from('gallery g');
     }
 }

@@ -52,4 +52,89 @@ ALTER TABLE `course_has_fees`
   ADD CONSTRAINT `fk_course_has_fees_course_id	` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 
+ALTER TABLE `fees_structure` ADD `branch_id` INT( 11 ) NOT NULL AFTER `caste_id` ,
+ADD `college_id` INT( 11 ) NOT NULL AFTER `branch_id` ;
+
     
+
+ ALTER TABLE `fees_structure` ADD CONSTRAINT `fk_college_id` FOREIGN KEY ( `college_id` ) REFERENCES `vk`.`college` (
+`id`
+) ON DELETE CASCADE ON UPDATE NO ACTION ;
+
+ ALTER TABLE `fees_structure` ADD CONSTRAINT `fk_branch_id` FOREIGN KEY ( `branch_id` ) REFERENCES `vk`.`branch` (
+`id`
+) ON DELETE CASCADE ON UPDATE NO ACTION ;
+
+
+--
+-- Table structure for table `gallery`
+--
+
+CREATE TABLE IF NOT EXISTS `gallery` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+
+--
+-- Table structure for table `gallery_attachment`
+--
+
+CREATE TABLE IF NOT EXISTS `gallery_attachment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `gallery_id` int(11) NOT NULL,
+  `path` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `base_url` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `size` int(11) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `order` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_coupons_attachment_coupons` (`gallery_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `gallery_attachment`
+--
+ALTER TABLE `gallery_attachment`
+  ADD CONSTRAINT `fk_gallery_id` FOREIGN KEY (`gallery_id`) REFERENCES `gallery` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+ALTER TABLE `gallery` ADD `created_at` DATETIME NOT NULL ,
+ADD `updated_at` DATETIME NOT NULL ;
+
+--
+-- Table structure for table `college_has_gallery`
+--
+
+CREATE TABLE IF NOT EXISTS `college_has_gallery` (
+  `college_id` int(11) NOT NULL,
+  `gallery_id` int(11) NOT NULL,
+  PRIMARY KEY (`college_id`,`gallery_id`),
+  KEY `fk_college_id` (`college_id`),
+  KEY `fk_gallery_id` (`gallery_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `college_has_gallery`
+--
+ALTER TABLE `college_has_gallery`
+  ADD CONSTRAINT `college_has_gallery_ibfk_2` FOREIGN KEY (`college_id`) REFERENCES `college` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `college_has_gallery_ibfk_1` FOREIGN KEY (`gallery_id`) REFERENCES `gallery` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+
+ALTER TABLE `college_attachment` DROP FOREIGN KEY `college_attachment_ibfk_1` ;
+
+ALTER TABLE `college_attachment` ADD CONSTRAINT `college_attachment_ibfk_1` FOREIGN KEY ( `college_id` ) REFERENCES `vk`.`college` (
+`id`
+) ON DELETE CASCADE ON UPDATE NO ACTION ;

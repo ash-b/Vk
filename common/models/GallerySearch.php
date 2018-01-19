@@ -5,12 +5,12 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\FeesStructure;
+use common\models\Gallery;
 
 /**
- * FeesStructureSearch represents the model behind the search form about `common\models\FeesStructure`.
+ * GallerySearch represents the model behind the search form about `common\models\Gallery`.
  */
-class FeesStructureSearch extends FeesStructure
+class GallerySearch extends Gallery
 {
     /**
      * @inheritdoc
@@ -18,10 +18,8 @@ class FeesStructureSearch extends FeesStructure
     public function rules()
     {
         return [
-           // [['amount', 'caste_id', 'branch_id', 'college_id', 'status'], 'required'],
-            [['amount'], 'number'],
-            [['caste_id', 'branch_id', 'college_id', 'status'], 'integer'],
-            [['created_at', 'updated_at'], 'safe'],
+            [['id'], 'integer'],
+            [['name'], 'safe'],
         ];
     }
 
@@ -43,7 +41,7 @@ class FeesStructureSearch extends FeesStructure
      */
     public function search($params)
     {
-        $query = FeesStructure::find();
+        $query = Gallery::find();
 
         // add conditions that should always apply here
 
@@ -62,14 +60,9 @@ class FeesStructureSearch extends FeesStructure
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'amount' => $this->amount,
-            'caste_id' => $this->caste_id,
-            'branch_id' => $this->branch_id,
-            'college_id' => $this->college_id,
-            'status' => $this->status,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
         ]);
+
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }

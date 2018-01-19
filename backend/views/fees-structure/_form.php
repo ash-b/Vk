@@ -21,7 +21,7 @@ use yii\helpers\ArrayHelper;
                 $value[] =$array->id;
             }
             echo $form->field($model,'caste_id')->widget(Select2::classname(), [
-                                                'value' => $value,
+                                                //'value' => $value,
                                                 'data' => ArrayHelper::map(\common\models\Caste::find()->where(['status'=>1])->all(), 'id', 'name'),
                                                 'options' => ['placeholder' => 'Select Caste','id'=>'caste'],
                                                 'pluginOptions' => [
@@ -31,9 +31,35 @@ use yii\helpers\ArrayHelper;
 
                   
         ?>
-        <?= $form->field($model, 'status')->dropDownList(array(1 => "Yes", 0 => "No")) ?>
+        
+        <?= $form->field($model,'status')->widget(Select2::classname(), [
+                                'data' => array(1 => "Yes", 0 => "No"),
+                                'options' => ['placeholder' => 'Select Status','id'=>'state-id'],
+                                'pluginOptions' => [
+                                    'allowClear' => true,
+                                ]
+                            ]);
+                            ?>
+        <?php // $form->field($model, 'status')->dropDownList(array(1 => "Yes", 0 => "No")) ?>
     </div>
-    <div class="col-md-6"></div>
+    <div class="col-md-6">
+        <?= $form->field($model,'branch_id')->widget(Select2::classname(), [
+                                'data' => ArrayHelper::map(\common\models\Branch::find()->all(), 'id', 'name'),
+                                'options' => ['placeholder' => 'Select Branch','id'=>'branch-id'],
+                                'pluginOptions' => [
+                                    'allowClear' => true,
+                                ]
+                            ]);
+        ?>
+        <?= $form->field($model,'college_id')->widget(Select2::classname(), [
+                                'data' => ArrayHelper::map(\common\models\College::find()->all(), 'id', 'name'),
+                                'options' => ['placeholder' => 'Select College','id'=>'college-id'],
+                                'pluginOptions' => [
+                                    'allowClear' => true,
+                                ]
+                            ]);
+        ?>
+    </div>
     <div class="col-md-12"></div>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success pull-right' : 'btn btn-primary pull-right']) ?>

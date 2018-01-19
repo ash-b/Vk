@@ -114,14 +114,14 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                         'url' => ['/stream/index'],
                                     ],
                                     [
-                                        'label' => Yii::t('backend', 'Course'),
-                                        'icon' => 'th',
-                                        'url' => ['/course/index'],
-                                    ],
-                                    [
                                         'label' => Yii::t('backend', 'Fees Structure'),
                                         'icon' => 'th',
                                         'url' => ['/fees-structure/index'],
+                                    ],
+                                    [
+                                        'label' => Yii::t('backend', 'Gallery'),
+                                        'icon' => 'th',
+                                        'url' => ['/gallery/index'],
                                     ],
                                    
                                     [

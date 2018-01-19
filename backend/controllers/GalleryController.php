@@ -3,36 +3,39 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\College;
-use common\models\CollegeSearch;
+use common\models\Gallery;
+use common\models\GallerySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * CollegeController implements the CRUD actions for College model.
+ * GalleryController implements the CRUD actions for Gallery model.
  */
-class CollegeController extends Controller
+class GalleryController extends Controller
 {
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['post'],
+                    'delete' => ['POST'],
                 ],
             ],
         ];
     }
 
     /**
-     * Lists all College models.
+     * Lists all Gallery models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new CollegeSearch();
+        $searchModel = new GallerySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -42,7 +45,7 @@ class CollegeController extends Controller
     }
 
     /**
-     * Displays a single College model.
+     * Displays a single Gallery model.
      * @param integer $id
      * @return mixed
      */
@@ -54,22 +57,16 @@ class CollegeController extends Controller
     }
 
     /**
-     * Creates a new College model.
+     * Creates a new Gallery model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new College();
+        $model = new Gallery();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $galleries= Yii::$app->request->post('gallery');
-            if(!empty($galleries)){
-                foreach ($galleries as $gallery){
-                    $gall_new = \common\models\Gallery::findOne($gallery);
-                    $model->link('gallery', $gall_new);
-                }
-            }
+            //return $this->redirect(['view', 'id' => $model->id]);
             return $this->redirect(['index']);
         } else {
             return $this->render('create', [
@@ -79,7 +76,7 @@ class CollegeController extends Controller
     }
 
     /**
-     * Updates an existing College model.
+     * Updates an existing Gallery model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -89,19 +86,7 @@ class CollegeController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $existing_gallery = \common\models\CollegeHasGallery::find()->where(['college_id'=>$model->id])->all();
-            if(!empty($existing_gallery)){
-                foreach($existing_gallery as $ex_gall) {
-                    $ex_gall->delete();
-                }
-            }
-            $galleries= Yii::$app->request->post('gallery');
-            if(!empty($galleries)){
-                foreach ($galleries as $gallery){
-                    $gall_new = \common\models\Gallery::findOne($gallery);
-                    $model->link('gallery', $gall_new);
-                }
-            }
+            ///return $this->redirect(['view', 'id' => $model->id]);
             return $this->redirect(['index']);
         } else {
             return $this->render('update', [
@@ -111,7 +96,7 @@ class CollegeController extends Controller
     }
 
     /**
-     * Deletes an existing College model.
+     * Deletes an existing Gallery model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -124,15 +109,15 @@ class CollegeController extends Controller
     }
 
     /**
-     * Finds the College model based on its primary key value.
+     * Finds the Gallery model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return College the loaded model
+     * @return Gallery the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = College::findOne($id)) !== null) {
+        if (($model = Gallery::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

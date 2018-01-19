@@ -41,6 +41,32 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             [
+                'attribute' => 'branch_id',
+                'filter' => ArrayHelper::map(\common\models\Branch::find()->all(), 'id', 'name'),
+                'value' => function ($model) {
+                    $branch= \common\models\Branch::find()->where(['id'=>$model->branch_id])->one();
+                    if(!empty($branch)){
+                        $name=$branch->name;
+                    }else{
+                        $name="";
+                    }
+                    return $name;
+                },
+            ],
+            [
+                'attribute' => 'college_id',
+                'filter' => ArrayHelper::map(\common\models\College::find()->all(), 'id', 'name'),
+                'value' => function ($model) {
+                    $college= \common\models\College::find()->where(['id'=>$model->college_id])->one();
+                    if(!empty($college)){
+                        $name=$college->name;
+                    }else{
+                        $name="";
+                    }
+                    return $name;
+                },
+            ],
+            [
                 'attribute' => 'status',
                 'filter' => array(1 => "Yes", 0 => "No"),
                 'value' => function ($model) {

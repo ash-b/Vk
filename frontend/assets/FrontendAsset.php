@@ -30,14 +30,24 @@ class FrontendAsset extends AssetBundle
      * @var array
      */
     public $css = [
-        'css/style.css',
+        'css/bootstrap.min.css', 
+        'css/font-awesome.min.css', 
+        'css/prettyPhoto.css', 
+        'css/animate.min.css', 
+        'css/main.css', 
+        'css/responsive.css', 
     ];
 
     /**
      * @var array
      */
     public $js = [
-        'js/app.js',
+        "js/jquery.js",
+        "js/bootstrap.min.js",
+        "js/jquery.prettyPhoto.js",
+        "js/jquery.isotope.min.js",
+        "js/main.js",
+        "js/wow.min.js",
     ];
 
     /**

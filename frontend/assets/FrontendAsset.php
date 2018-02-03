@@ -35,7 +35,9 @@ class FrontendAsset extends AssetBundle
         'css/prettyPhoto.css', 
         'css/animate.min.css', 
         'css/main.css', 
-        'css/responsive.css', 
+        'css/responsive.css',
+        'css/flexslider.css',
+        'css/slideout.css', 
     ];
 
     /**
@@ -48,6 +50,7 @@ class FrontendAsset extends AssetBundle
         "js/jquery.isotope.min.js",
         "js/main.js",
         "js/wow.min.js",
+        'js/slideout.min.js',  
     ];
 
     /**

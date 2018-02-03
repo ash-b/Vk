@@ -138,3 +138,7 @@ ALTER TABLE `college_attachment` DROP FOREIGN KEY `college_attachment_ibfk_1` ;
 ALTER TABLE `college_attachment` ADD CONSTRAINT `college_attachment_ibfk_1` FOREIGN KEY ( `college_id` ) REFERENCES `vk`.`college` (
 `id`
 ) ON DELETE CASCADE ON UPDATE NO ACTION ;
+
+/*************Updated on 3/2/2018*******************/
+
+ALTER TABLE `college` ADD `stream_id` INT(11) NOT NULL AFTER `college_type`;

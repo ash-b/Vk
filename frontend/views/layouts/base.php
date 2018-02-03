@@ -57,12 +57,17 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
                 <li><a href="services.html">Services</a></li>
                 <li><a href="portfolio.html">Portfolio</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down"></i></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Streams<i class="fa fa-angle-down"></i></a>
                     <ul class="dropdown-menu">
-                        <li><a href="blog-item.html">Blog Single</a></li>
-                        <li><a href="pricing.html">Pricing</a></li>
+                        <?php 
+                            $streams= common\models\Stream::find()->all();
+                            foreach($streams as $stream){
+                        ?>
+                            <li><a href="/frontend/web/stream/index?id=<?= $stream->id ?>"><?= $stream->name ?></a></li>
+                        <?php } ?>
+<!--                        <li><a href="pricing.html">Pricing</a></li>
                         <li><a href="404.html">404</a></li>
-                        <li><a href="shortcodes.html">Shortcodes</a></li>
+                        <li><a href="shortcodes.html">Shortcodes</a></li>-->
                     </ul>
                 </li>
                 <li><a href="blog.html">Blog</a></li> 

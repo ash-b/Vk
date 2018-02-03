@@ -113,7 +113,15 @@ use trntv\filekit\widget\Upload;
               ]);
               ?>
               <br>
-          </div>
+            </div>
+            <?= $form->field($model,'stream_id')->widget(Select2::classname(), [
+                    'data' => ArrayHelper::map(common\models\Stream::find()->where(['status'=>1])->all(), 'id', 'name'),
+                    'options' => ['placeholder' => 'Select Stream'],
+                    'pluginOptions' => [
+                        'allowClear' => true,
+                    ]
+                ]);
+            ?>
         </div>
     </div>
 

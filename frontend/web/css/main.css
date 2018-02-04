@@ -2118,7 +2118,7 @@ ul.faq li > div h3 {
 
 .blog .blog-item .img-blog {
   border-radius: 5px;
-  margin-bottom: 45px;
+  margin-bottom: 10px;
 }
 
 .blog .blog-item .blog-content {
@@ -2136,7 +2136,7 @@ ul.faq li > div h3 {
 
 .blog .blog-item .blog-content h3 {
   color: #858586;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
   /* font-weight: 300 */}
 
 .blog .blog-item .blog-content h4 {
@@ -2526,7 +2526,20 @@ shortcodes page css
 }
 
 
-
+/*************** Custom CSS ***************/
+.w3ls-hover {
+    background-color: #FFF;
+    display: block;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+}
+.gallery-grids {
+    padding: 10px;
+}
+.breadcrumb li:nth-child(1), .breadcrumb > li:nth-child(1) + li:before{
+	display:none;
+}
 
 
 

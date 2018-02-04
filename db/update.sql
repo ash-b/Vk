@@ -142,3 +142,50 @@ ALTER TABLE `college_attachment` ADD CONSTRAINT `college_attachment_ibfk_1` FORE
 /*************Updated on 3/2/2018*******************/
 
 ALTER TABLE `college` ADD `stream_id` INT(11) NOT NULL AFTER `college_type`;
+
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `vk`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `college_has_branch`
+--
+
+CREATE TABLE `college_has_branch` (
+  `college_id` int(11) NOT NULL,
+  `branch_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `college_has_branch`
+--
+ALTER TABLE `college_has_branch`
+  ADD KEY `college_id_fk` (`college_id`,`branch_id`),
+  ADD KEY `branch_id_fk` (`branch_id`);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `college_has_branch`
+--
+ALTER TABLE `college_has_branch`
+  ADD CONSTRAINT `branch_id_fk` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `college_id_fk` FOREIGN KEY (`college_id`) REFERENCES `college` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;

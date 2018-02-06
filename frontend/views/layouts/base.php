@@ -52,7 +52,7 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
         
         <div class="collapse navbar-collapse navbar-right">
             <ul class="nav navbar-nav">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="/frontend/web/">Home</a></li>
                 <li class="active"><a href="about-us.html">About Us</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="portfolio.html">Portfolio</a></li>

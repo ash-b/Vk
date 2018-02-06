@@ -189,3 +189,8 @@ ALTER TABLE `college_has_branch`
 ALTER TABLE `college_has_branch`
   ADD CONSTRAINT `branch_id_fk` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   ADD CONSTRAINT `college_id_fk` FOREIGN KEY (`college_id`) REFERENCES `college` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+
+ALTER TABLE `college_has_branch` ADD `intake` INT(11) NOT NULL AFTER `branch_id`;
+
+ALTER TABLE `college_has_branch` ADD `id` INT(11) NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY (`id`);

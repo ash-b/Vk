@@ -109,6 +109,11 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                         'url' => ['/college/index'],
                                     ],
                                     [
+                                        'label' => Yii::t('backend', 'College has Branch'),
+                                        'icon' => 'th',
+                                        'url' => ['/college-has-branch/index'],
+                                    ],
+                                    [
                                         'label' => Yii::t('backend', 'Stream'),
                                         'icon' => 'th',
                                         'url' => ['/stream/index'],

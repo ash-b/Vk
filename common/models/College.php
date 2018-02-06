@@ -72,7 +72,7 @@ class College extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name','dte_code'], 'required'],
+            [['name','dte_code','intake'], 'required'],
             [['description', 'address', 'image_path', 'image_base_url'], 'string'],
             [['university_id','status','city_id','stream_id'], 'integer'],
             [['created_at', 'updated_at','picture','attachments'], 'safe'],
@@ -97,6 +97,7 @@ class College extends \yii\db\ActiveRecord
             'dte_code' => 'DTE Code',
             'college_type' => 'College Type',
             'university_id' => 'University',
+            'intake' => 'Intake',
             'stream_id' => 'Stream',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
@@ -123,5 +124,9 @@ class College extends \yii\db\ActiveRecord
     public function getGallery()
     {
         return $this->hasMany(Gallery::className(), ['id' => 'gallery_id'])->viaTable('college_has_gallery', ['college_id' => 'id'])->from('gallery g');
+    }
+    public function getBranch()
+    {
+        return $this->hasMany(Branch::className(), ['id' => 'branch_id'])->viaTable('college_has_branch', ['college_id' => 'id'])->from('branch b');
     }
 }

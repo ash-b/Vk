@@ -128,6 +128,16 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                         'icon' => 'th',
                                         'url' => ['/gallery/index'],
                                     ],
+                                    [
+                                        'label' => Yii::t('backend', 'Slider'),
+                                        'icon' => 'th',
+                                        'url' => ['/slider/index'],
+                                    ],
+                                    [
+                                        'label' => Yii::t('backend', 'Advertisement'),
+                                        'icon' => 'th',
+                                        'url' => ['/advertisement/index'],
+                                    ],
                                    
                                     [
                                         'label' => Yii::t('backend', 'Users'),

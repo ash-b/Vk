@@ -33,7 +33,8 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $slider= \common\models\Slider::find()->all();
+        return $this->render('index',['sliders'=>$slider]);
     }
 
     public function actionContact()

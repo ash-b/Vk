@@ -194,3 +194,114 @@ ALTER TABLE `college_has_branch`
 ALTER TABLE `college_has_branch` ADD `intake` INT(11) NOT NULL AFTER `branch_id`;
 
 ALTER TABLE `college_has_branch` ADD `id` INT(11) NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY (`id`);
+
+/******************16/02/2018***********************/
+
+ALTER TABLE `stream` ADD `parent_stream` INT(11) NOT NULL AFTER `description`;
+
+CREATE TABLE `slider` (
+  `id` bigint(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `image_path` varchar(255) NOT NULL,
+  `image_base_url` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `slider`
+--
+
+INSERT INTO `slider` (`id`, `name`, `image_path`, `image_base_url`, `created_at`, `updated_at`) VALUES
+(1, 'Slider', '1/UoGxLmTNMMEVFd8H8lPsIaeM2StBZa2k.jpg', '/storage/source', '2018-02-16 10:41:24', '2018-02-16 10:41:24'),
+(2, 'Slider2', '1/TlXI7_157xrjDt_WyGOZlmMC_fr1E2gy.jpeg', '/storage/source', '2018-02-16 10:44:58', '2018-02-16 10:44:58'),
+(3, 'Slider3', '1/v0LeeXwTc0eMKaAmf4C1wOyjr3T8X3QU.jpeg', '/storage/source', '2018-02-16 10:45:11', '2018-02-16 10:45:11');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `slider`
+--
+ALTER TABLE `slider`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `slider`
+--
+ALTER TABLE `slider`
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+
+-- phpMyAdmin SQL Dump
+-- version 4.5.4.1deb2ubuntu2
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Feb 16, 2018 at 05:00 PM
+-- Server version: 5.7.21-0ubuntu0.16.04.1
+-- PHP Version: 7.0.27-1+ubuntu16.04.1+deb.sury.org+1
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `test`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `advertisement`
+--
+
+CREATE TABLE `advertisement` (
+  `id` int(11) NOT NULL,
+  `link` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `status` int(5) NOT NULL,
+  `from_date` date NOT NULL,
+  `to_date` date NOT NULL,
+  `created_at` datetime NOT NULL,
+  `image_path` varchar(255) NOT NULL,
+  `image_base_url` varchar(255) NOT NULL,
+  `position` int(5) NOT NULL,
+  `is_mobile` int(5) NOT NULL,
+  `order_no` int(3) DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `advertisement`
+--
+ALTER TABLE `advertisement`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `advertisement`
+--
+ALTER TABLE `advertisement`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+ALTER TABLE `advertisement` ADD `updated_at` DATETIME NOT NULL AFTER `created_at`;

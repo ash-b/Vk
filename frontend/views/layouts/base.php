@@ -8,9 +8,21 @@ use yii\bootstrap\NavBar;
 
 $this->beginContent('@frontend/views/layouts/_clear.php')
 ?>
-
+<style>
+    .navbar-nav > li {
+        margin-left: 8px;
+        padding-bottom: 22px;
+    }
+    .custom-container{
+        width:100%;
+    }
+    .navbar-inverse .navbar-brand {
+        font-size: 20px;
+    }
+</style>
 
 <header id="header">
+    
     <div class="top-bar">
         <div class="container">
             <div class="row">
@@ -39,7 +51,7 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
 </div><!--/.top-bar-->
 
 <nav class="navbar navbar-inverse" role="banner">
-    <div class="container">
+    <div class="container custom-container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -54,22 +66,35 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
             <ul class="nav navbar-nav">
                 <li><a href="/frontend/web/">Home</a></li>
                 <li class="active"><a href="about-us.html">About Us</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <li class="dropdown">
+                <?php 
+                    $streams= common\models\Stream::find()->all();
+                    $substreams=common\models\Stream::find()->where('!=','parent_stream',0)->all();
+                        foreach($streams as $stream){
+//                            foreach($substreams as $substream){
+//                                if($substream->parent_stream==$stream->id){
+//                                    
+//                                }
+//                            }
+                ?>          
+                    <li class="dropdown"><a href="/frontend/web/stream/index?id=<?= $stream->id ?>"><?= $stream->name ?></a></li>
+<!--                    <ul class="dropdown-menu">
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="404.html">404</a></li>
+                        <li><a href="shortcodes.html">Shortcodes</a></li>
+                    </ul>-->
+                <?php } ?>
+               
+<!--                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Streams<i class="fa fa-angle-down"></i></a>
                     <ul class="dropdown-menu">
-                        <?php 
-                            $streams= common\models\Stream::find()->all();
-                            foreach($streams as $stream){
-                        ?>
-                            <li><a href="/frontend/web/stream/index?id=<?= $stream->id ?>"><?= $stream->name ?></a></li>
-                        <?php } ?>
-<!--                        <li><a href="pricing.html">Pricing</a></li>
+                        
+                            
+                        
+                        <li><a href="pricing.html">Pricing</a></li>
                         <li><a href="404.html">404</a></li>
-                        <li><a href="shortcodes.html">Shortcodes</a></li>-->
+                        <li><a href="shortcodes.html">Shortcodes</a></li>
                     </ul>
-                </li>
+                </li>-->
                 <li><a href="blog.html">Blog</a></li> 
                 <li><a href="contact-us.html">Contact</a></li>                        
             </ul>

@@ -6,34 +6,44 @@ $this->title = Yii::$app->name;
  <section id="main-slider" class="no-margin">
         <div class="carousel slide">
             <ol class="carousel-indicators">
-                <li data-target="#main-slider" data-slide-to="0" class="active"></li>
-                <li data-target="#main-slider" data-slide-to="1"></li>
-                <li data-target="#main-slider" data-slide-to="2"></li>
+                <?php
+                    $i=1;
+                    foreach($sliders as $slider){ 
+                ?>
+                <li data-target="#main-slider" data-slide-to=<?= $i++;?> class="<?= $i==1?'active':''?>"></li>
+<!--                <li data-target="#main-slider" data-slide-to="1"></li>
+                <li data-target="#main-slider" data-slide-to="2"></li>-->
+                <?php }?>
             </ol>
             <div class="carousel-inner">
-
-                <div class="item active" style="background-image: url(/images/slider/bg1.jpg)">
-                    <div class="container">
-                        <div class="row slide-margin">
-                            <div class="col-sm-6">
-                                <div class="carousel-content">
-                                    <h1 class="animation animated-item-1">Lorem ipsum dolor sit amet consectetur adipisicing elit</h1>
-                                    <h2 class="animation animated-item-2">Accusantium doloremque laudantium totam rem aperiam, eaque ipsa...</h2>
-                                    <a class="btn-slide animation animated-item-3" href="#">Read More</a>
+                <?php
+                    $i=1;
+                    foreach($sliders as $slider){ 
+                ?>
+                    <div class="item <?= $i==1?'active':''?>" style="background-image: url(/storage/source/<?= $slider->image_path?>)">
+                        <div class="container">
+                            <div class="row slide-margin">
+                                <div class="col-sm-6">
+                                    <div class="carousel-content">
+                                        <h1 class="animation animated-item-1"><?= $slider->name;?></h1>
+                                        <h2 class="animation animated-item-2">Accusantium doloremque laudantium totam rem aperiam, eaque ipsa...</h2>
+                                        <a class="btn-slide animation animated-item-3" href="#">Read More</a>
+                                    </div>
                                 </div>
-                            </div>
+<!--                                <div class="col-sm-6 hidden-xs animation animated-item-4">
+                                    <div class="slider-img">
+                                        <img src="/storage/source/<?= $slider->image_path?>" class="img-responsive">
+                                    </div>
+                                </div>-->
 
-                            <div class="col-sm-6 hidden-xs animation animated-item-4">
-                                <div class="slider-img">
-                                    <img src="/images/slider/img1.png" class="img-responsive">
-                                </div>
                             </div>
-
                         </div>
-                    </div>
-                </div><!--/.item-->
+                    </div><!--/.item-->
+                <?php $i++; 
+                    }
+                ?>
 
-                <div class="item" style="background-image: url(/images/slider/bg2.jpg)">
+<!--                <div class="item" style="background-image: url(/images/slider/bg2.jpg)">
                     <div class="container">
                         <div class="row slide-margin">
                             <div class="col-sm-6">
@@ -52,7 +62,7 @@ $this->title = Yii::$app->name;
 
                         </div>
                     </div>
-                </div><!--/.item-->
+                </div>/.item
 
                 <div class="item" style="background-image: url(/images/slider/bg3.jpg)">
                     <div class="container">
@@ -71,7 +81,7 @@ $this->title = Yii::$app->name;
                             </div>
                         </div>
                     </div>
-                </div><!--/.item-->
+                </div>/.item-->
             </div><!--/.carousel-inner-->
         </div><!--/.carousel-->
         <a class="prev hidden-xs" href="#main-slider" data-slide="prev">

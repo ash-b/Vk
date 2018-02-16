@@ -167,7 +167,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     <p><?= $university->name?></p>
                     <h3 id="publish_date">Address</h3>
                     <p><?= $college->address?></p>
-                                         
+                    <?php 
+                        
+                    
+                    ?>
                 </div><!--/.recent comments-->
 
 

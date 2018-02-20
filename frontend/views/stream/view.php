@@ -3,6 +3,8 @@
  * @var $this \yii\web\View
  * @var $model \common\models\Page
  */
+use common\models\Stream;
+use common\models\College;
 $this->title = $stream->name;
 
 ?>
@@ -22,6 +24,7 @@ $this->title = $stream->name;
                 ?>
                     <div class="blog-item">
                         <div class="row">
+                            <input type="hidden" value="<?= $college->college_type?>" class="college-type-hidden">
                             <div class="col-xs-12 col-sm-2 text-center">
                                 <div class="entry-meta">
                                     <span id="publish_date">DTE CODE</span>
@@ -71,48 +74,41 @@ $this->title = $stream->name;
                 </div><!--/.search-->
 
                 <div class="widget categories">
-                    <h3>Recent Comments</h3>
+                    <div class="div-left-border"><h3>Search College Type</h3></div>
                     <div class="row">
-                        <div class="col-sm-12">
-                            <div class="single_comments">
-                                <img src="/storage/source/images/blog/avatar3.png" alt=""  />
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do </p>
-                                <div class="entry-meta small muted">
-                                    <span>By <a href="#">Alex</a></span <span>On <a href="#">Creative</a></span>
-                                </div>
+                        <div class="col-md-12">
+                            <div class="radio">
+                                <?php $colleges1 = College::find()->where(['substream_id' => $stream->id, 'status' => 1])->orWhere(['stream_id'=>$stream->id,'status' => 1])->andWhere(['college_type'=>'Private'])->all();?>
+                                <label><input type="radio" name="collegetype" value="Private" onclick="searchcollegetype(this)"> Private (<?= !empty($colleges1)?count($colleges1):0?>)</label>
                             </div>
-                            <div class="single_comments">
-                                <img src="/storage/source/images/blog/avatar3.png" alt=""  />
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do </p>
-                                <div class="entry-meta small muted">
-                                    <span>By <a href="#">Alex</a></span <span>On <a href="#">Creative</a></span>
-                                </div>
+                            <div class="radio">
+                                <?php $colleges2 = College::find()->where(['substream_id' => $stream->id, 'status' => 1])->orWhere(['stream_id'=>$stream->id,'status' => 1])->andWhere(['college_type'=>'Government'])->all();?>
+                                <label><input type="radio" name="collegetype" value="Government" onclick="searchcollegetype(this)"> Government (<?= !empty($colleges2)?count($colleges2):0?>) </label>
                             </div>
-                            <div class="single_comments">
-                                <img src="/storage/source/images/blog/avatar3.png" alt=""  />
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do </p>
-                                <div class="entry-meta small muted">
-                                    <span>By <a href="#">Alex</a></span <span>On <a href="#">Creative</a></span>
-                                </div>
+                            <div class="radio">
+                                <?php $colleges3 = College::find()->where(['substream_id' => $stream->id, 'status' => 1])->orWhere(['stream_id'=>$stream->id,'status' => 1])->andWhere(['college_type'=>'Autonomous'])->all();?>
+                                <label><input type="radio" name="collegetype" value="Autonomous" onclick="searchcollegetype(this)"> Autonomous (<?= !empty($colleges3)?count($colleges3):0?>)</label>
                             </div>
-
-                        </div>
-                    </div>                     
+                            <div class="radio">
+                                <label><input type="radio" name="collegetype" value="All" onclick="searchcollegetype(this)"> All (<?= !empty($colleges)?count($colleges):0?>)</label>
+                            </div>
+                        </div>    
+                    </div>
                 </div><!--/.recent comments-->
 
 
-                <div class="widget categories">
-                    <h3>Streams</h3>
+<!--                <div class="widget categories">
+                    <div class="div-left-border"><h3>Streams</h3></div>
                     <div class="row">
                         <div class="col-sm-6">
                             <ul class="blog_category">
-                                <?php foreach($streams as $stream){ ?>
-                                <li><a href="/frontend/web/stream/index?id=<?= $stream->id?>"><?= $stream->name?></a></li>
-                                <?php } ?>    
+                                <?php //foreach($streams as $stream){ ?>
+                                <li><a href="/frontend/web/stream/index?id=<?php // $stream->id?>"><?php // $stream->name?></a></li>
+                                <?php //} ?>    
                             </ul>
                         </div>
                     </div>                     
-                </div><!--/.categories-->
+                </div>/.categories-->
 
                             <div class="widget archieve">
                     <h3>Archieve</h3>
@@ -174,6 +170,26 @@ $this->title = $stream->name;
             }
 
         });
+    
+    }
+    function searchcollegetype(ths){
+            
+        var searchterm = jQuery(ths).val().trim().toLowerCase();
+        if (searchterm.length == 0){
+            jQuery(".blog-item").show();
+            return  true;
+        }
+        if(searchterm!='all'){
+            jQuery(".blog-item").hide();
+            jQuery(".college-type-hidden").each(function () {
+                if (jQuery(this).val().toLowerCase().indexOf(searchterm) >= 0 ){
+                    jQuery(this).closest(".blog-item").show();
+                }
+            });
+        }else{
+            jQuery(".blog-item").show();
+        }
+        
     
     }
 </script>

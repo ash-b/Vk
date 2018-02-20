@@ -74,7 +74,7 @@ class College extends \yii\db\ActiveRecord
         return [
             [['name','dte_code','intake'], 'required'],
             [['description', 'address', 'image_path', 'image_base_url'], 'string'],
-            [['university_id','status','city_id','stream_id'], 'integer'],
+            [['university_id','status','city_id','stream_id','substream_id'], 'integer'],
             [['created_at', 'updated_at','picture','attachments'], 'safe'],
             [['name','college_type'], 'string', 'max' => 56],
             [['dte_code'], 'string', 'max' => 11],
@@ -99,6 +99,7 @@ class College extends \yii\db\ActiveRecord
             'university_id' => 'University',
             'intake' => 'Intake',
             'stream_id' => 'Stream',
+            'substream_id' => 'Sub Stream',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'attachments' => 'Gallery Images',

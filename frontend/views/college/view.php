@@ -4,7 +4,10 @@
  * @var $model \common\models\Page
  */
 $this->title = $college->name;
-$strm= common\models\Stream::find()->where(['id'=>$college->stream_id])->one();
+$strm= common\models\Stream::find()->where(['id'=>$college->substream_id])->one();
+if(empty($strm)){
+    $strm= common\models\Stream::find()->where(['id'=>$college->stream_id])->one();
+}
 $this->params['breadcrumbs'][] = ['label' => $strm->name, 'url' => ['stream/index','id'=>$college->stream_id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -167,25 +170,39 @@ $this->params['breadcrumbs'][] = $this->title;
                     <p><?= $university->name?></p>
                     <h3 id="publish_date">Address</h3>
                     <p><?= $college->address?></p>
-                    <?php 
-                        
-                    
+                    <h3 id="publish_date">Branches with Intake</h3>
+                    <?php $branches= common\models\CollegeHasBranch::find()->where(['college_id'=>$college->id])->all(); 
+                        if(!empty($branches)){
                     ?>
+                    <table class="table">
+                            <tbody>
+                                <?php foreach($branches as $branch){ ?>
+                                    <tr>
+                                        <td><?php $branch_name= common\models\Branch::find()->where(['id'=>$branch->branch_id])->one();
+                                                echo $branch_name->name;
+                                            ?>
+                                        </td>
+                                        <td class="text-center"><?= $branch->intake;?></td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    <?php }?>
                 </div><!--/.recent comments-->
 
 
-                <div class="widget categories">
-                    <h3>Streams</h3>
+<!--                <div class="widget categories">
+                    <div class="div-left-border"><h3>Streams</h3></div>
                     <div class="row">
                         <div class="col-sm-6">
                             <ul class="blog_category">
-                                <?php foreach($streams as $stream){ ?>
-                                <li><a href="/frontend/web/stream/index?id=<?= $stream->id?>"><?= $stream->name?></a></li>
-                                <?php } ?>    
+                                <?php //foreach($streams as $stream){ ?>
+                                <li><a href="/frontend/web/stream/index?id=<?php // $stream->id?>"><?php // $stream->name?></a></li>
+                                <?php //} ?>    
                             </ul>
                         </div>
                     </div>                     
-                </div><!--/.categories-->
+                </div>/.categories-->
 
                 <div class="widget archieve">
                     <h3>Archieve</h3>

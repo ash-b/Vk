@@ -21,7 +21,7 @@ class CollegeController extends Controller
             $id=$_GET['id'];
             $college = College::find()->where(['id' => $id, 'status' => 1])->one();
             $college_attachments= \common\models\CollegeAttachment::find()->where(['college_id'=>$college->id])->all();
-            $streams=Stream::find()->where(['status'=>1])->all();
+            $streams=Stream::find()->where(['status'=>1])->andWhere(['parent_stream'=>0])->all();
             return $this->render('view', ['college' => $college,'college_attachments'=>$college_attachments,'streams'=>$streams]);
         }
     }

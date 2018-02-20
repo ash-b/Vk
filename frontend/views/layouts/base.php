@@ -68,21 +68,39 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
                 <li class="active"><a href="about-us.html">About Us</a></li>
                 <?php 
                     $streams= common\models\Stream::find()->all();
-                    $substreams=common\models\Stream::find()->where('!=','parent_stream',0)->all();
+                    
+                    //echo "<pre>"; print_r($substreams); die;
                         foreach($streams as $stream){
-//                            foreach($substreams as $substream){
-//                                if($substream->parent_stream==$stream->id){
-//                                    
-//                                }
-//                            }
-                ?>          
-                    <li class="dropdown"><a href="/frontend/web/stream/index?id=<?= $stream->id ?>"><?= $stream->name ?></a></li>
-<!--                    <ul class="dropdown-menu">
-                        <li><a href="pricing.html">Pricing</a></li>
-                        <li><a href="404.html">404</a></li>
-                        <li><a href="shortcodes.html">Shortcodes</a></li>
-                    </ul>-->
-                <?php } ?>
+                            $substreams=common\models\Stream::find()->where(['parent_stream'=>$stream->id])->all();
+                            if(!empty($substreams)){
+                                foreach($substreams as $substream){
+                                    if($substream->parent_stream==$stream->id){
+                                        $submenu_data[]=array($substream->id=>$substream->name);
+                                    }
+                                }
+                                
+                            }
+                            if($stream->parent_stream==0){
+                                //echo "<pre>"; print_r($submenu_data); die;
+                ?>  
+                                <?php if(!empty($submenu_data) && count($submenu_data)>0){ ?>
+                                    <li class="dropdown"><a href="javascript:void(0)"><?= $stream->name ?></a>
+                                        <ul class="dropdown-menu">
+                                            <?php foreach($submenu_data as $submenu){ 
+                                                    foreach($submenu as $key=>$sub){
+                                            ?>
+                                                    <li><a href="/frontend/web/stream/index?id=<?= $key ?>"><?= $sub ?></a></li>
+                                            <?php } } ?>
+                                        </ul>
+                                    </li>
+                                <?php }else{ ?>
+                                        <li><a href="/frontend/web/stream/index?id=<?= $stream->id ?>"><?= $stream->name ?></a></li>
+                                <?php } ?>
+                <?php } 
+                        $substreams=array();
+                        $submenu_data=array();
+                    } 
+                ?>
                
 <!--                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Streams<i class="fa fa-angle-down"></i></a>

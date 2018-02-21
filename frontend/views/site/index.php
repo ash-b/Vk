@@ -3,7 +3,7 @@
 $this->title = Yii::$app->name;
 ?>
 
- <section id="main-slider" class="no-margin">
+ <section id="main-slider" class="no-margin"   >
         <div class="carousel slide">
             <ol class="carousel-indicators">
                 <?php
@@ -15,7 +15,7 @@ $this->title = Yii::$app->name;
                 <li data-target="#main-slider" data-slide-to="2"></li>-->
                 <?php }?>
             </ol>
-            <div class="carousel-inner">
+            <div class="carousel-inner" style="height: 400px;">
                 <?php
                     $i=1;
                     foreach($sliders as $slider){ 
@@ -612,3 +612,12 @@ $this->title = Yii::$app->name;
     </section><!--/#conatcat-info-->
 
 
+<style type="text/css">
+#main-slider .carousel .carousel-content {
+   margin-top: 50px;
+
+}
+#main-slider .carousel .item{
+    height: 400px;
+}
+</style>

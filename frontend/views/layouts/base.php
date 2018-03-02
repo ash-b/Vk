@@ -101,18 +101,21 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
                         $submenu_data=array();
                     } 
                 ?>
-               
-<!--                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Streams<i class="fa fa-angle-down"></i></a>
+                                        
+                <li><a href="/frontend/web/scholarship/index">Scholarship</a></a></li> 
+                <li class="dropdown"><a href="javascript:void(0)">Exams</a>
+                <?php 
+                    $exams= \common\models\Exams::find()->all();
+                    if(!empty($exams)){
+                ?>    
                     <ul class="dropdown-menu">
-                        
-                            
-                        
-                        <li><a href="pricing.html">Pricing</a></li>
-                        <li><a href="404.html">404</a></li>
-                        <li><a href="shortcodes.html">Shortcodes</a></li>
+                        <?php foreach($exams as $exam){ ?>      
+                            <li><a href="/frontend/web/exam/index?id=<?= $exam->id ?>"><?= $exam->name ?></a></li>
+                        <?php }  ?>
                     </ul>
-                </li>-->
+                <?php }  ?>
+                  
+                    
                 <li><a href="blog.html">Blog</a></li> 
                 <li><a href="contact-us.html">Contact</a></li>                        
             </ul>

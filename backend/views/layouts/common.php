@@ -1,4 +1,4 @@
-<?php
+7<?php
 /**
  * @var $this yii\web\View
  */
@@ -122,6 +122,11 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                         'label' => Yii::t('backend', 'Scholarship'),
                                         'icon' => 'th',
                                         'url' => ['/scholarship/index'],
+                                    ],
+                                    [
+                                        'label' => Yii::t('backend', 'Exams'),
+                                        'icon' => 'th',
+                                        'url' => ['/exams/index'],
                                     ],
                                     [
                                         'label' => Yii::t('backend', 'Fees Structure'),
